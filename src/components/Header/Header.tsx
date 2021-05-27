@@ -1,14 +1,11 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import API from '../../util/api-functions';
 import './styles.css'
 
 const Header = () => {
     
     const location = useLocation();
     
-    API.getAllJobsWithSkills().then(aho => console.log(aho));
-
     return (
         <div className="header">
             <div className="logo">JobsNow</div>
