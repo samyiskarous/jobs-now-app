@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 0.5rem;
+  padding: 0.7rem 0.5rem;
 }
 
 .navigation-links{
@@ -29,4 +29,8 @@
 
 .navigation-links li a:not(.selected):hover{
   color: gray;
+}
+
+.logo{
+  font-weight: 700;
 }
