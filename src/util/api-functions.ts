@@ -7,10 +7,8 @@ interface APIInterface{
     getRelatedJobsToJob: (jobUUID: string) => Promise<JobInterface[]>;
     getRelatedJobsToSkill: (skillUUID: string) => Promise<JobInterface[]>;
     getRelatedSkillsToSkill: (skillUUID: string) => Promise<SkillInterface[]>;
-    getAutocompleteListForJobs: () => Promise<JobsAutocompleteInterface>;
+    getAutocompleteListForJobs: (jobTitle: string) => Promise<JobAutocompleteInterface[]>;
 }
-
-const endpoint = process.env.REACT_APP_API_ENDPOINT;
 
 interface SkillInterface{
     description: string;
@@ -30,13 +28,15 @@ interface JobInterface{
     uuid: string;
 }
 
-interface JobsAutocompleteInterface{
+interface JobAutocompleteInterface{
     uuid: string;
     title: string;
     normalized_job_title: string;
     parent_uuid: string;
 }
 // END: Data Interfaces
+
+const endpoint = process.env.REACT_APP_API_ENDPOINT;
 
 // START: API invocations
 const API: APIInterface = {
