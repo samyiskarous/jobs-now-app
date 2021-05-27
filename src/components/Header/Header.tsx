@@ -6,7 +6,9 @@ import './styles.css'
 const Header = () => {
     
     const location = useLocation();
-    API.getAutocompleteListForJobs('ESL Teacher').then(test => console.log(test));
+    
+    API.getAllJobsWithSkills().then(aho => console.log(aho));
+
     return (
         <div className="header">
             <div className="logo">JobsNow</div>

@@ -11,19 +11,43 @@ API.getAllJobs = (offset = 0, limit = 12) => {
             });
 }
 
-API.getJob = (jobUUID) => {
-    return fetch(`${endpoint}jobs/${jobUUID}`)
+API.getJobSkills = (jobUUID) => {
+    return fetch(`${endpoint}jobs/${jobUUID}/related_skills`)
             .then(response => response.json())
-            .then(data => data)
+            .then(data => data.skills?.slice(1, 10))
             .catch((error) => {
                 console.log('error', error)
             });
 }
 
-API.getJobSkills = (jobUUID) => {
-    return fetch(`${endpoint}jobs/${jobUUID}/related_skills`)
+
+API.getAllJobsWithSkills = async () => {
+    let jobsWithSkills = [];
+
+    await API.getAllJobs().then(async jobs => {
+        // Last item in the jobs data is not needed
+        jobs.splice(jobs.length-1, 1)
+        
+        for(let index = 0; index < jobs.length; index ++){
+            await API.getJobSkills(jobs[index].uuid)
+                        .then(jobsSkills => {
+                            const jobWithSkills = {
+                                ...jobs[index],
+                                skills: jobsSkills
+                            };
+                            jobsWithSkills.push(jobWithSkills);
+                           
+            })
+        }
+    });
+    
+    return jobsWithSkills;
+}
+
+API.getJob = (jobUUID) => {
+    return fetch(`${endpoint}jobs/${jobUUID}`)
             .then(response => response.json())
-            .then(data => data.skills)
+            .then(data => data)
             .catch((error) => {
                 console.log('error', error)
             });
