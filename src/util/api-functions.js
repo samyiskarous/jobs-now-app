@@ -20,11 +20,10 @@ API.getJobSkills = (jobUUID) => {
             });
 }
 
+API.getAllJobsWithSkills = () => {
+    return API.getAllJobs().then(async jobs => {
+        let jobsWithSkills = [];
 
-API.getAllJobsWithSkills = async () => {
-    let jobsWithSkills = [];
-
-    await API.getAllJobs().then(async jobs => {
         // Last item in the jobs data is not needed
         jobs.splice(jobs.length-1, 1)
         
@@ -35,13 +34,12 @@ API.getAllJobsWithSkills = async () => {
                                 ...jobs[index],
                                 skills: jobsSkills
                             };
-                            jobsWithSkills.push(jobWithSkills);
-                           
+                            jobsWithSkills.push(jobWithSkills);               
             })
         }
+
+        return jobsWithSkills;
     });
-    
-    return jobsWithSkills;
 }
 
 API.getJob = (jobUUID) => {
