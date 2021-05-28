@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import handleGetAllJobsWithSkills from '../../../actions/allJobsWithSkills';
+import handleGetJobsWithSkills from '../../../actions/allJobsWithSkills';
 import MainContainer from '../../shared/MainContainer';
-import JobsList from '../../reusable/JobsList';
+import JobsList from '../../reusable/ConnectedJobsList';
 
 const HomePage = (props: any) => {
 
     const {dispatch, allJobsWithSkills} = props;
 
     useEffect(() => {
-        dispatch(handleGetAllJobsWithSkills());
+        dispatch(handleGetJobsWithSkills());
     }, [dispatch]);
 
 

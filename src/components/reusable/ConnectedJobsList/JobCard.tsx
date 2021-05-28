@@ -17,7 +17,7 @@ const JobCard = (props: JobCardInterface) => {
             <div className="requiredSkillsSection">
                 <p className="medium-font">Required Skills:</p>
                 <div className="skillsBadgesContainer">
-                    {job.skills.map((skill: any, index: number) => {
+                    {job?.skills?.map((skill: any, index: number) => {
                         return (
                             <span key={index} className="skillBadge">
                                 <Link to="#" className="skillBadgeLink">

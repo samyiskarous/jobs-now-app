@@ -6,13 +6,13 @@ import {
   Switch,
   Route,
 } from 'react-router-dom'
-import { applyMiddleware, createStore } from 'redux';
+import { createStore } from 'redux';
 import rootReducer from './reducers';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
 import ConnectedApp from './components/App';
+import middlewares from './middlewares'
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, middlewares);
 
 ReactDOM.render(
   <React.StrictMode>

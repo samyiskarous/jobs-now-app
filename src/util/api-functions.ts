@@ -1,15 +1,17 @@
 const endpoint = process.env.REACT_APP_API_ENDPOINT;
 
+// Not used directly
+const getAllJobs = (nextPage = 0, jobsLimit = 12) => {
+    return fetch(`${endpoint}jobs?offset=${nextPage}&limit=${jobsLimit}`)
+            .then(response => response.json())
+            .then(data => data)
+            .catch((error) => {
+                console.log('error', error)
+            });
+}
+
 // START: API invocations
 const API: APIInterface = {
-    getAllJobs: (offset = 0, limit = 12) => {
-        return fetch(`${endpoint}jobs?offset=${offset}&limit=${limit}`)
-                .then(response => response.json())
-                .then(data => data)
-                .catch((error) => {
-                    console.log('error', error)
-                });
-    },
     getJobSkills: (jobUUID) => {
         return fetch(`${endpoint}jobs/${jobUUID}/related_skills`)
                 .then(response => response.json())
@@ -18,8 +20,8 @@ const API: APIInterface = {
                     console.log('error', error)
                 });
     },
-    getAllJobsWithSkills: () => {
-        return API.getAllJobs().then<JobInterface[]>(async jobs => {
+    getJobsWithSkills: (nextPage = 0, jobsLimit = 12) => {
+        return getAllJobs(nextPage, jobsLimit).then(async jobs => {
             let jobsWithSkills: JobInterface[] = [];
     
             // Last item in the jobs data is not needed
@@ -84,9 +86,8 @@ const API: APIInterface = {
 
 // START: Data Interfaces
 interface APIInterface{
-    getAllJobs: () => Promise<JobInterface[]>;
     getJobSkills: (jobUUID: string) => Promise<SkillInterface[]>;
-    getAllJobsWithSkills: () => Promise<JobInterface[]>;
+    getJobsWithSkills: (nextPage?: number, jobsLimit?: number) => Promise<JobInterface[]>;
     getJob: (jobUUID: string) => Promise<JobInterface>;
     getRelatedJobsToJob: (jobUUID: string) => Promise<JobInterface[]>;
     getRelatedJobsToSkill: (skillUUID: string) => Promise<JobInterface[]>;

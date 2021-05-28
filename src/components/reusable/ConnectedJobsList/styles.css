@@ -36,7 +36,7 @@
 .skillBadge{
     padding: 3px;
     margin: 3px;
-    background-color: var(--darkerGray);
+    background-color: var(--darker-gray);
 }
 
 .skillBadgeLink{
@@ -44,3 +44,10 @@
     color: inherit;
 }
 
+.infinite-scroll-component{
+    height: auto;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    overflow: auto;
+}
