@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import handleGetAllJobsWithSkills from '../../actions/allJobsWithSkills';
-import JobsList from './JobsList';
+import handleGetAllJobsWithSkills from '../../../actions/allJobsWithSkills';
+import MainContainer from '../../../helpers/MainContainer';
+import JobsList from '../../shared/JobsList';
 
 const HomePage = (props: any) => {
 
@@ -13,7 +14,9 @@ const HomePage = (props: any) => {
 
 
     return (
-        <JobsList jobs={allJobsWithSkills}/>
+        <MainContainer>
+          <JobsList jobs={allJobsWithSkills}/>
+        </MainContainer>
     );
 }
 

@@ -13,7 +13,7 @@ const API: APIInterface = {
     getJobSkills: (jobUUID) => {
         return fetch(`${endpoint}jobs/${jobUUID}/related_skills`)
                 .then(response => response.json())
-                .then(data => data.skills?.slice(1, 10))
+                .then(data => data.skills?.slice(1, 7))
                 .catch((error) => {
                     console.log('error', error)
                 });

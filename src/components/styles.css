@@ -1,10 +1,34 @@
 :root{
+    --white: white;
     --light-gray: #E5E5E5;
     --gray: #F0F0F0;
     --dark-gray: #D9D9D9;
     --darkerGray: #C4C4C4;
+
+    --medium-font: 18px;
+    --large-font: 24px;
+    --xlarge-font: 48px
 }
 
 body{
     background-color: var(--light-gray);
+}
+
+/* START: Font Variations */
+.medium-font{
+    font-size: var(--medium-font);
+}
+.large-font{
+    font-size: var(--large-font);
+}
+.xlarge-font{
+    font-size: var(--xlarge-font);
+}
+.bold{
+    font-weight: 700;
+}
+/* END: Font Variations */
+
+.plainLink{
+    color: inherit;
 }
