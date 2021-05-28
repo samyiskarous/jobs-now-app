@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Header from './Header/Header'
-import ConnectedHomePage from './pages/HomePage/HomePage';
+import Header from './shared/Header'
+import ConnectedHomePage from './main/HomePage/HomePage';
 import './styles.css'
 
 const App = (props: any) => {

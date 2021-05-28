@@ -3,14 +3,19 @@ import './styles.css'
 
 interface MainContainerPropsInterface{
     children?: ReactNode;
+    title: string;
 }
 
 const MainContainer = (props: MainContainerPropsInterface) => {
-    const {children} = props;
+    const {children, title} = props;
 
     return (
         <div className="mainContainer">
-            {children}
+            <p className="xlarge-font bold mainContainerTitle">{title}</p>
+
+            <div className="mainContainerContent">
+                {children}
+            </div>
         </div>
     );
 }

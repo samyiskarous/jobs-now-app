@@ -1,0 +1,15 @@
+.mainContainer{
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 32px;
+    margin-bottom: 176px;
+}
+
+.mainContainerTitle{
+    margin-bottom: 57px;
+}
+
+.mainContainerContent{
+    display: flex;
+    justify-content: space-between;
+}
