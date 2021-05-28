@@ -1,12 +1,12 @@
 .mainContainer{
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 32px;
+    margin-left: var(--app-width-spacings);
+    margin-right: var(--app-width-spacings);
+    margin-top: 5rem;
     margin-bottom: 176px;
 }
 
 .mainContainerTitle{
-    margin-bottom: 57px;
+    margin-bottom: 3rem;
 }
 
 .mainContainerContent{

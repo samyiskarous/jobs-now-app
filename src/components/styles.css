@@ -7,7 +7,9 @@
 
     --medium-font: 18px;
     --large-font: 24px;
-    --xlarge-font: 48px
+    --xlarge-font: 48px;
+
+    --app-width-spacings: 3rem;
 }
 
 body{

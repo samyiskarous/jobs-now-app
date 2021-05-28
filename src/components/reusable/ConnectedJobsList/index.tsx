@@ -13,10 +13,10 @@ interface JobsListPropsInterface{
 const JobsList = (props: JobsListPropsInterface) => {
     const {dispatch, jobs} = props;
     const [currentPage, setCurrentPage] = useState<number>(0);
-    const jobsLimit = 50;
+    const jobsLimit = 12;
 
-    const callHandleGetJobsWithSkills = () => {
-        dispatch(handleGetJobsWithSkills(currentPage+1, jobsLimit, false));
+    const dispatchHandleGetJobsWithSkills = () => {
+        dispatch(handleGetJobsWithSkills((currentPage + 1), jobsLimit, false));
         setCurrentPage(currentPage => currentPage + 1);
     }
 
@@ -24,7 +24,8 @@ const JobsList = (props: JobsListPropsInterface) => {
         <div className="jobsListContainer">
             <InfiniteScroll
                 dataLength={jobs.length}
-                next={callHandleGetJobsWithSkills}
+                next={dispatchHandleGetJobsWithSkills}
+                // Only start getting more on-scrolling after the first render
                 hasMore={jobs.length ? true : false}
                 loader={<h4>Loading...</h4>}
             >

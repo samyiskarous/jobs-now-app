@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import './styles.css'
 
 interface JobCardInterface{
-    job: any
+    job?: any,
 }
 
 const JobCard = (props: JobCardInterface) => {

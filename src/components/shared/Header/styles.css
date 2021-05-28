@@ -2,7 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.7rem 0.5rem;
+  padding: 0.7rem var(--app-width-spacings);
+  background-color: var(--white);
+  width: 100%;
+  position: fixed;
+  top: 0;
 }
 
 .navigation-links{
@@ -13,6 +17,11 @@
 
 .navigation-links li {
   padding: 0.5rem;
+}
+
+/* To allign with the App's spacings at the sides */
+.navigation-links li:last-child, .navigation-links li:last-child a{
+  padding-right: 0;
 }
 
 .navigation-links li a{
