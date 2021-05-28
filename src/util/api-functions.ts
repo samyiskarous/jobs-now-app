@@ -1,41 +1,3 @@
-// START: Data Interfaces
-interface APIInterface{
-    getAllJobs: () => Promise<JobInterface[]>;
-    getJobSkills: (jobUUID: string) => Promise<SkillInterface[]>;
-    getAllJobsWithSkills: () => Promise<JobInterface[]>;
-    getJob: (jobUUID: string) => Promise<JobInterface>;
-    getRelatedJobsToJob: (jobUUID: string) => Promise<JobInterface[]>;
-    getRelatedJobsToSkill: (skillUUID: string) => Promise<JobInterface[]>;
-    getRelatedSkillsToSkill: (skillUUID: string) => Promise<SkillInterface[]>;
-    getAutocompleteListForJobs: (jobTitle: string) => Promise<JobAutocompleteInterface[]>;
-}
-
-interface SkillInterface{
-    description: string;
-    importance: number;
-    level: number;
-    normalized_skill_name: string;
-    skill_name: string;
-    skill_type: string;
-    skill_uuid: string;
-}
-
-interface JobInterface{
-    normalized_job_title: string;
-    parent_uuid: string;
-    skills?: SkillInterface[];
-    title: string;
-    uuid: string;
-}
-
-interface JobAutocompleteInterface{
-    uuid: string;
-    title: string;
-    normalized_job_title: string;
-    parent_uuid: string;
-}
-// END: Data Interfaces
-
 const endpoint = process.env.REACT_APP_API_ENDPOINT;
 
 // START: API invocations
@@ -120,5 +82,42 @@ const API: APIInterface = {
 } 
 // END: API invocations
 
+// START: Data Interfaces
+interface APIInterface{
+    getAllJobs: () => Promise<JobInterface[]>;
+    getJobSkills: (jobUUID: string) => Promise<SkillInterface[]>;
+    getAllJobsWithSkills: () => Promise<JobInterface[]>;
+    getJob: (jobUUID: string) => Promise<JobInterface>;
+    getRelatedJobsToJob: (jobUUID: string) => Promise<JobInterface[]>;
+    getRelatedJobsToSkill: (skillUUID: string) => Promise<JobInterface[]>;
+    getRelatedSkillsToSkill: (skillUUID: string) => Promise<SkillInterface[]>;
+    getAutocompleteListForJobs: (jobTitle: string) => Promise<JobAutocompleteInterface[]>;
+}
+
+interface SkillInterface{
+    description: string;
+    importance: number;
+    level: number;
+    normalized_skill_name: string;
+    skill_name: string;
+    skill_type: string;
+    skill_uuid: string;
+}
+
+export interface JobInterface{
+    normalized_job_title: string;
+    parent_uuid: string;
+    skills?: SkillInterface[];
+    title: string;
+    uuid: string;
+}
+
+interface JobAutocompleteInterface{
+    uuid: string;
+    title: string;
+    normalized_job_title: string;
+    parent_uuid: string;
+}
+// END: Data Interfaces
 
 export default API;

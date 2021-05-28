@@ -1,12 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Header from './Header/Header'
+import ConnectedHomePage from './HomePage/HomePage';
+import './styles.css'
 
-function App() {
+const App = (props: any) => {
+
+ 
+
   return (
     <div className="App">
       <Header />
+
+      <ConnectedHomePage />
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state: any) => {
+  return state;
+}
+
+const ConnectedApp = connect(mapStateToProps)(App);
+
+export default ConnectedApp;
