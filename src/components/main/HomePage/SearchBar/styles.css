@@ -1,0 +1,21 @@
+.searchBarContainer{
+    --app-width-spacings-summation: (var(--app-width-spacings) * 2);
+    --negative-app-width-spacings: calc(-1 * var(--app-width-spacings));
+
+    height: 9rem;
+    width: calc(100% + var(--app-width-spacings-summation));
+    margin-left: var(--negative-app-width-spacings);
+    background-color: var(--white);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchInput{
+    width: 50%;
+    height: 50%;
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: var(--large-font);
+}

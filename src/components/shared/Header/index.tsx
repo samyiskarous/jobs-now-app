@@ -8,11 +8,11 @@ const Header = () => {
     
     return (
         <div className="header">
-            <div className="logo">JobsNow</div>
+            <div className="logo large-font bold">JobsNow</div>
             <ul className="navigation-links">
                 {links.map((link, index) => {
                     return (
-                        <li key={index}>
+                        <li key={index} className="medium-font">
                             <Link 
                                 to={link.route} 
                                 className={location.pathname === link.route ? 'selected' : ''}

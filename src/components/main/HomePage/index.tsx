@@ -3,13 +3,14 @@ import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom';
 // import SearchPage from '../SearchPage';
 import AllJobsView from './AllJobsView';
+import ConnectedSearchInput from './SearchBar';
 import './styles.css'
 
 const HomePage = (props: any) => {
 
     return (
         <>
-          <p>SEARCH BARRRRRRRRRR</p>
+          <ConnectedSearchInput/>
           
           <Switch>
             <Route exact path="/">

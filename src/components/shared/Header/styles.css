@@ -39,7 +39,3 @@
 .navigation-links li a:not(.selected):hover{
   color: gray;
 }
-
-.logo{
-  font-weight: 700;
-}

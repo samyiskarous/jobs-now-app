@@ -31,6 +31,29 @@ body{
 }
 /* END: Font Variations */
 
+/* Global Across the App */
 .plainLink{
     color: inherit;
+}
+
+.mainPageTitle {
+    margin-bottom: 2.5rem;
+    margin-top: 1rem;
+}
+
+/* Chrome/Opera/Safari */
+::-webkit-input-placeholder { 
+    font-size: var(--large-font);
+}
+/* Firefox 19+ */
+::-moz-placeholder { 
+    font-size: var(--large-font);
+}
+/* IE 10+ */
+:-ms-input-placeholder { 
+    font-size: var(--large-font);
+}
+/* Firefox 18- */
+:-moz-placeholder { 
+    font-size: var(--large-font);
 }
