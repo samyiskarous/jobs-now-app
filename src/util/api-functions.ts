@@ -22,23 +22,23 @@ const API: APIInterface = {
     },
     getJobsWithSkills: (nextPage = 0, jobsLimit = 12) => {
         return getAllJobs(nextPage, jobsLimit).then(async jobs => {
-            let jobsWithSkills: JobInterface[] = [];
+            let jobsWithSkillsBatch: JobInterface[] = [];
     
             // Last item in the jobs data is not needed
             jobs.splice(jobs.length-1, 1)
             
             for(let index = 0; index < jobs.length; index ++){
                 await API.getJobSkills(jobs[index].uuid)
-                            .then(jobsSkills => {
+                            .then(jobSkills => {
                                 const jobWithSkills = {
                                     ...jobs[index],
-                                    skills: jobsSkills
+                                    skills: jobSkills
                                 };
-                                jobsWithSkills.push(jobWithSkills);               
+                                jobsWithSkillsBatch.push(jobWithSkills);               
                 })
             }
     
-            return jobsWithSkills;
+            return jobsWithSkillsBatch;
         });
     },
     getJob: (jobUUID) => {

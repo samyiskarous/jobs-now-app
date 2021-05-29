@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
-import handleGetJobsWithSkills from '../../../../actions/allJobsWithSkills';
+import handleGetJobsWithSkillsBatch from '../../../../actions/allJobsWithSkills';
 import JobsList from '../../../reusable/JobsList';
 import './styles.css'
 
@@ -9,7 +9,7 @@ const AllJobsView = (props: any) => {
     const {dispatch, allJobsWithSkills} = props;
 
     useEffect(() => {
-        dispatch(handleGetJobsWithSkills());
+        dispatch(handleGetJobsWithSkillsBatch());
     }, [dispatch]);
 
     return (

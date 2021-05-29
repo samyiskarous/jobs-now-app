@@ -1,35 +1,22 @@
 import API from "../util/api-functions";
 
-export const GET_JOBS_WITH_SKILLS = 'GET_JOBS_WITH_SKILLS';
+export const GET_JOBS_WITH_SKILLS_BATCH = 'GET_JOBS_WITH_SKILLS_BATCH';
 export const GET_MORE_JOBS_WITH_SKILLS = 'GET_MORE_JOBS_WITH_SKILLS';
 
-const getJobsWithSkills = (jobsWithSkills: any) => {
+const getJobsWithSkillsBatch = (jobsWithSkillsBatch: any) => {
     return {
-        type: GET_JOBS_WITH_SKILLS,
+        type: GET_JOBS_WITH_SKILLS_BATCH,
         payload: {
-            jobsWithSkills
+            jobsWithSkillsBatch
         }
     }
 }
 
-const getMoreJobsWithSkills = (moreJobsWithSkills: any) => {
-    return {
-        type: GET_MORE_JOBS_WITH_SKILLS,
-        payload: {
-            moreJobsWithSkills
-        }
-    }
-}
-
-const handleGetJobsWithSkills = (nextPage: number = 0, jobsCount: number = 12, firstFetch: boolean = true) => {
+const handleGetJobsWithSkillsBatch = (nextPage: number = 0, jobsCount: number = 12) => {
     return (dispatch: any) => {
         API.getJobsWithSkills(nextPage, jobsCount)
-            .then(jobsWithSkills => {
-                if(firstFetch)
-                    dispatch(getJobsWithSkills(jobsWithSkills))
-                else{
-                    dispatch(getMoreJobsWithSkills(jobsWithSkills))
-                }
+            .then(jobsWithSkillsBatch => {
+                dispatch(getJobsWithSkillsBatch(jobsWithSkillsBatch))
             })
             .catch((error) => {
                 console.log(error)
@@ -37,4 +24,4 @@ const handleGetJobsWithSkills = (nextPage: number = 0, jobsCount: number = 12, f
     }   
 }
 
-export default handleGetJobsWithSkills;
+export default handleGetJobsWithSkillsBatch;

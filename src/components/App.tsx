@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom'
 import './styles.css'
 import MainContainer from './shared/MainContainer';
-import ConnectedHomePage from './main/HomePage';
+import HomePage from './main/HomePage';
 
 const App = (props: any) => {
 
@@ -17,10 +17,10 @@ const App = (props: any) => {
       <MainContainer>
         <Switch>
           <Route exact path="/">
-            <ConnectedHomePage/>
+            <HomePage/>
           </Route>
           <Route exact path="/search">
-            <ConnectedHomePage/>
+            <HomePage/>
           </Route>
           <Route exact path="/job/:uuid">
             {/* <JobView /> */}

@@ -18,7 +18,7 @@ const JobsList = (props: JobsListPropsInterface) => {
     const jobsLimit = 12;
 
     const dispatchHandleGetJobsWithSkills = () => {
-        dispatch(handleGetJobsWithSkills((currentPage + 1), jobsLimit, false));
+        dispatch(handleGetJobsWithSkills((currentPage + 1), jobsLimit));
         setCurrentPage(currentPage => currentPage + 1);
     }
 
