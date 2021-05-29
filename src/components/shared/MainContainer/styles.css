@@ -5,11 +5,7 @@
     margin-bottom: 176px;
 }
 
-.mainContainerTitle{
-    margin-bottom: 3rem;
-}
-
 .mainContainerContent{
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 }
