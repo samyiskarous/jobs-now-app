@@ -10,6 +10,8 @@ interface JobsListPropsInterface{
     dispatch?: any
 }
 
+// This component is used mutually for Viewing All-Jobs or Searched-for-Jobs
+
 const JobsList = (props: JobsListPropsInterface) => {
     const {dispatch, jobs} = props;
     const [currentPage, setCurrentPage] = useState<number>(0);

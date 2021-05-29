@@ -1,5 +1,5 @@
 import React from 'react'
-import '../reusable/ConnectedJobsList/JobCard/styles.css'
+import '../reusable/JobsList/JobCard/styles.css'
 
 const JobCardSkeleton = () => {
 

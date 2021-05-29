@@ -8,7 +8,6 @@ import {
 import './styles.css'
 import MainContainer from './shared/MainContainer';
 import ConnectedHomePage from './main/HomePage';
-import SearchPage from './main/SearchPage';
 
 const App = (props: any) => {
 

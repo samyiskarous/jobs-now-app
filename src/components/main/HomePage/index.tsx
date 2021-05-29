@@ -1,45 +1,31 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom';
-import handleGetJobsWithSkills from '../../../actions/allJobsWithSkills';
-import JobsList from '../../reusable/ConnectedJobsList';
-import SearchPage from '../SearchPage';
+// import SearchPage from '../SearchPage';
+import AllJobsView from './AllJobsView';
 import './styles.css'
 
 const HomePage = (props: any) => {
 
-    const {dispatch, allJobsWithSkills} = props;
-
-    useEffect(() => {
-        dispatch(handleGetJobsWithSkills());
-    }, [dispatch]);
-
-
     return (
         <>
-          <p className="xlarge-font bold homePageTitle">All Jobs</p>
-
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between'
-          }}>
-            <JobsList jobs={allJobsWithSkills}/>
-
-            <Switch>
-              <Route exact path="/search">
-                <SearchPage/>
-              </Route>
-            </Switch>
-          </div>
+          <p>SEARCH BARRRRRRRRRR</p>
+          
+          <Switch>
+            <Route exact path="/">
+              <AllJobsView/>
+            </Route>
+            <Route exact path="/search">
+              {/* <SearchJobsView/> */}
+            </Route>
+          </Switch>
         </>
     );
 }
 
 
 const mapStateToProps = (state: any) => {
-    return {
-      allJobsWithSkills: state.allJobsWithSkills
-    }
+    return state;
   }
   
 const ConnectedHomePage = connect(mapStateToProps)(HomePage);
