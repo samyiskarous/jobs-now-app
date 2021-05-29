@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { Route, Switch } from 'react-router-dom';
 import handleGetJobsWithSkills from '../../../actions/allJobsWithSkills';
 import JobsList from '../../reusable/ConnectedJobsList';
+import SearchPage from '../SearchPage';
+import './styles.css'
 
 const HomePage = (props: any) => {
 
@@ -16,7 +19,18 @@ const HomePage = (props: any) => {
         <>
           <p className="xlarge-font bold homePageTitle">All Jobs</p>
 
-          <JobsList jobs={allJobsWithSkills}/>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between'
+          }}>
+            <JobsList jobs={allJobsWithSkills}/>
+
+            <Switch>
+              <Route exact path="/search">
+                <SearchPage/>
+              </Route>
+            </Switch>
+          </div>
         </>
     );
 }
