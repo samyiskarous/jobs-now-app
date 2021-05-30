@@ -8,7 +8,7 @@ interface JobCardInterface{
 
 const JobCard = (props: JobCardInterface) => {
     const {job} = props;
-    console.log(job);
+
     return (
         <div className="jobCard">
             {/* Card Title */}
@@ -20,7 +20,7 @@ const JobCard = (props: JobCardInterface) => {
                 <p className="medium-font">Required Skills:</p>
                 <div className="skillsBadgesContainer">
                     {job?.skills === undefined ? 'None' : (
-                        
+
                         job?.skills?.map((skill: any, index: number) => {
                             return (
                                 <span key={index} className="skillBadge">

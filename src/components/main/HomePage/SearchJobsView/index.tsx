@@ -6,12 +6,12 @@ import JobsList from '../../../reusable/JobsList';
 interface SearchJobsViewPropsInterface{
     searchText: string;
     dispatch?: any;
-    autocompletedJobsWithSkills?: any;
+    autocompletionJobsWithSkills?: any;
 }
 
 const SearchJobsView = (props: SearchJobsViewPropsInterface) => {
 
-    const {dispatch, autocompletedJobsWithSkills, searchText} = props;
+    const {dispatch, autocompletionJobsWithSkills, searchText} = props;
 
     useEffect(() => {
         dispatch(handleGetJobsWithSkillsBatch());
@@ -20,17 +20,19 @@ const SearchJobsView = (props: SearchJobsViewPropsInterface) => {
     return (
         <>
             <p className="xlarge-font bold mainPageTitle">
-                {`"${searchText}" jobs (${autocompletedJobsWithSkills.length})`}
+                {`"${searchText}" jobs (${autocompletionJobsWithSkills?.length})`}
             </p>
 
-            <JobsList jobs={autocompletedJobsWithSkills} loadOnScrollEnabled={false}/>            
+            {autocompletionJobsWithSkills?.length && 
+                <JobsList jobs={autocompletionJobsWithSkills} loadOnScrollEnabled={false}/>            
+            }
         </>
     );
 }
 
 const mapStateToProps = (state: any) => {
     return {
-        autocompletedJobsWithSkills: state.autocompletedJobsWithSkills
+        autocompletionJobsWithSkills: state.autocompletionJobsWithSkills
     }
 }
   

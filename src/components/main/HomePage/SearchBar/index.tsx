@@ -1,17 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
-import handleGetAutocompletedJobsWithSkills from '../../../../actions/autocompleteJobsWithSkills';
+import handleGetJobsByAutoCompletion from '../../../../actions/getJobsByAutocompletion';
 import useDebounce from '../../../../helpers/debounce';
+import ConnectedAutocompletionList from './AutocompletionList';
 import './styles.css'
 
 interface SearchInputPropsInterface{
     updateSearchTextHandlerCallback: (searchText: string) => void,
     dispatch?: any;
+    autocompletionJobs?: any;
 }
 
 const SearchInput = (props: SearchInputPropsInterface) => {
-    const {dispatch, updateSearchTextHandlerCallback} = props;
+    const {dispatch, updateSearchTextHandlerCallback, autocompletionJobs} = props;
 
     const history = useHistory();
     
@@ -20,8 +22,8 @@ const SearchInput = (props: SearchInputPropsInterface) => {
             updateSearchTextHandlerCallback(searchText);
 
             history.push('/search');
-        
-            dispatch(handleGetAutocompletedJobsWithSkills(searchText))
+
+            dispatch(handleGetJobsByAutoCompletion(searchText))
         }
     }, 1500)
     
@@ -32,16 +34,17 @@ const SearchInput = (props: SearchInputPropsInterface) => {
                 placeholder="Search Keyword" 
                 className="searchInput"
                 onChange={event => debouncedSearchJobsHandler(event.target.value)}
-                />
-            <div className="autocompleteList">
-                
-            </div>
+            />
+            {autocompletionJobs.length > 0 ? <ConnectedAutocompletionList/> : null}
+            
         </div>
     );
 }
 
 const mapStateToProps = (state: any) => {
-    return state;
+    return {
+        autocompletionJobs: state.autocompletionJobs
+    };
 }
 
 const ConnectedSearchInput = connect(mapStateToProps)(SearchInput);
