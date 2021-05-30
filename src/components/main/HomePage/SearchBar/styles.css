@@ -24,3 +24,7 @@
     border-radius: 5px;
     font-size: var(--large-font);
 }
+
+.autoCompletionListContainer{
+    display: contents;
+}

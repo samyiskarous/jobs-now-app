@@ -1,15 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import handleGetAndAttachSkillsToAutocompletionJobs from '../../../../../actions/attachSkillsToAutocompletionJobs';
 import './styles.css'
 
 const AutocompletionList = (props: any) => {
-    const {dispatch, autocompletionJobs} = props;
-
-    useEffect(() => {
-        dispatch(handleGetAndAttachSkillsToAutocompletionJobs(autocompletionJobs))
-    }, []);
+    const {autocompletionJobs} = props;
 
     return (
         <div className="autocompletionList">

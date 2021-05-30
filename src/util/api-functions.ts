@@ -141,12 +141,6 @@ export interface SuggestedJobInterface{
     uuid: string;
 }
 
-interface JobAutocompleteInterface{
-    uuid: string;
-    title: string;
-    normalized_job_title: string;
-    parent_uuid: string;
-}
 // END: Data Interfaces
 
 export default API;
