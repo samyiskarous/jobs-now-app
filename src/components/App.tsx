@@ -16,12 +16,17 @@ const App = (props: any) => {
       <Header />
       <MainContainer>
         <Switch>
+          {/* Next two route lead to the same component as there's a need for 
+          common logic (search) to be shared accross both cases of Viewing all jobs and 
+          Searching for jobs, a smaller section will be conditionally rendered for both cases
+          based on the route, '/' or /searc' */}
           <Route exact path="/">
             <HomePage/>
           </Route>
           <Route exact path="/search">
             <HomePage/>
           </Route>
+
           <Route exact path="/job/:uuid">
             {/* <JobView /> */}
           </Route>
