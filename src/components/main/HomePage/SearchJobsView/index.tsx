@@ -7,11 +7,12 @@ interface SearchJobsViewPropsInterface{
     searchText: string;
     dispatch?: any;
     autocompletionJobsWithSkills?: any;
+    autocompletionJobs?: any;
 }
 
 const SearchJobsView = (props: SearchJobsViewPropsInterface) => {
 
-    const {dispatch, autocompletionJobsWithSkills, searchText} = props;
+    const {dispatch, autocompletionJobsWithSkills, searchText, autocompletionJobs} = props;
 
     useEffect(() => {
         dispatch(handleGetJobsWithSkillsBatch());
@@ -20,11 +21,12 @@ const SearchJobsView = (props: SearchJobsViewPropsInterface) => {
     return (
         <>
             <p className="xlarge-font bold mainPageTitle">
-                {`"${searchText}" jobs (${autocompletionJobsWithSkills?.length})`}
+                {`"${searchText}" jobs (${autocompletionJobs?.length})`}
             </p>
 
-            {autocompletionJobsWithSkills?.length && 
-                <JobsList jobs={autocompletionJobsWithSkills} loadOnScrollEnabled={false}/>            
+            {autocompletionJobsWithSkills?.length ?
+                <JobsList jobs={autocompletionJobsWithSkills} loadOnScrollEnabled={false}/> 
+                : null           
             }
         </>
     );
@@ -32,7 +34,8 @@ const SearchJobsView = (props: SearchJobsViewPropsInterface) => {
 
 const mapStateToProps = (state: any) => {
     return {
-        autocompletionJobsWithSkills: state.autocompletionJobsWithSkills
+        autocompletionJobsWithSkills: state.autocompletionJobsWithSkills,
+        autocompletionJobs: state.autocompletionJobs
     }
 }
   

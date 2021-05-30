@@ -25,17 +25,23 @@ const JobsList = (props: JobsListPropsInterface) => {
 
     return (
         <div className="jobsListContainer">
-            <InfiniteScroll
-                dataLength={jobs.length}
-                next={dispatchHandleGetJobsWithSkills}
-                // Only start getting more on-scrolling after the first render
-                hasMore={loadOnScrollEnabled && jobs.length ? true : false}
-                loader={<h4>Loading...</h4>}
-            >
-                {jobs.map((job: any, index: number) => {
+            {loadOnScrollEnabled ? (
+                <InfiniteScroll
+                    dataLength={jobs.length}
+                    next={dispatchHandleGetJobsWithSkills}
+                    // Only start getting more on-scrolling after the first render
+                    hasMore={jobs.length ? true : false}
+                    loader={<h4>Loading...</h4>}
+                >
+                    {jobs.map((job: any, index: number) => {
+                        return <JobCard key={index} job={job}/>
+                    })}
+                </InfiniteScroll>
+            ) : (
+                jobs.map((job: any, index: number) => {
                     return <JobCard key={index} job={job}/>
-                })}
-            </InfiniteScroll>
+                })
+            )}
         </div>
     );
 }
