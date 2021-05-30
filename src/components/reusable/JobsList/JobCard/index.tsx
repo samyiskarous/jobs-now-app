@@ -8,25 +8,29 @@ interface JobCardInterface{
 
 const JobCard = (props: JobCardInterface) => {
     const {job} = props;
-
+    console.log(job);
     return (
         <div className="jobCard">
             {/* Card Title */}
-            <p className="large-font bold">{job.title}</p>
+            <p className="large-font bold">{job.title || job.suggestion}</p>
             
             {/* Required Skills */}
+
             <div className="requiredSkillsSection">
                 <p className="medium-font">Required Skills:</p>
                 <div className="skillsBadgesContainer">
-                    {job?.skills?.map((skill: any, index: number) => {
-                        return (
-                            <span key={index} className="skillBadge">
-                                <Link to="#" className="skillBadgeLink">
-                                    {skill.skill_name}
-                                </Link>
-                            </span>
-                        )
-                    })}
+                    {job?.skills === undefined ? 'None' : (
+                        
+                        job?.skills?.map((skill: any, index: number) => {
+                            return (
+                                <span key={index} className="skillBadge">
+                                    <Link to="#" className="skillBadgeLink">
+                                        {skill.skill_name}
+                                    </Link>
+                                </span>
+                            )
+                        })
+                    )}
                 </div>
             </div>
 

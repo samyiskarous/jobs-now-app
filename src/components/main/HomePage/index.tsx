@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 // import SearchPage from '../SearchPage';
 import AllJobsView from './AllJobsView';
 import ConnectedSearchInput from './SearchBar';
+import SearchJobsView from './SearchJobsView';
 import './styles.css'
 
 const HomePage = (props: any) => {
@@ -17,7 +18,7 @@ const HomePage = (props: any) => {
               <AllJobsView/>
             </Route>
             <Route exact path="/search">
-              {/* <SearchJobsView/> */}
+              <SearchJobsView/>
             </Route>
           </Switch>
         </>

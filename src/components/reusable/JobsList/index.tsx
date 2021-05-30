@@ -8,12 +8,13 @@ import './styles.css'
 interface JobsListPropsInterface{
     jobs: any
     dispatch?: any
+    loadOnScrollEnabled?: boolean
 }
 
 // This component is used mutually for Viewing All-Jobs or Searched-for-Jobs
 
 const JobsList = (props: JobsListPropsInterface) => {
-    const {dispatch, jobs} = props;
+    const {dispatch, jobs, loadOnScrollEnabled = true} = props;
     const [currentPage, setCurrentPage] = useState<number>(0);
     const jobsLimit = 12;
 
@@ -28,7 +29,7 @@ const JobsList = (props: JobsListPropsInterface) => {
                 dataLength={jobs.length}
                 next={dispatchHandleGetJobsWithSkills}
                 // Only start getting more on-scrolling after the first render
-                hasMore={jobs.length ? true : false}
+                hasMore={loadOnScrollEnabled && jobs.length ? true : false}
                 loader={<h4>Loading...</h4>}
             >
                 {jobs.map((job: any, index: number) => {

@@ -1,7 +1,6 @@
 import API from "../util/api-functions";
 
 export const GET_JOBS_WITH_SKILLS_BATCH = 'GET_JOBS_WITH_SKILLS_BATCH';
-export const GET_MORE_JOBS_WITH_SKILLS = 'GET_MORE_JOBS_WITH_SKILLS';
 
 const getJobsWithSkillsBatch = (jobsWithSkillsBatch: any) => {
     return {

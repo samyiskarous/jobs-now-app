@@ -1,6 +1,6 @@
 const endpoint = process.env.REACT_APP_API_ENDPOINT;
 
-// Not used directly
+//START: Functions not for direct usage
 const getAllJobs = (nextPage = 0, jobsLimit = 12) => {
     return fetch(`${endpoint}jobs?offset=${nextPage}&limit=${jobsLimit}`)
             .then(response => response.json())
@@ -9,6 +9,16 @@ const getAllJobs = (nextPage = 0, jobsLimit = 12) => {
                 console.log('error', error)
             });
 }
+
+const getAutocompleteJobs = (searchText: string) => {
+    return fetch(`${endpoint}jobs/autocomplete?begins_with=${searchText}&contains=${searchText}&ends_with=${searchText}`)
+            .then(response => response.json())
+            .then(data => data)
+            .catch((error) => {
+                console.log('error', error)
+            });
+}
+// END: Functions not for direct usage
 
 // START: API invocations
 const API: APIInterface = {
@@ -27,6 +37,27 @@ const API: APIInterface = {
             // Last item in the jobs data is not needed
             jobs.splice(jobs.length-1, 1)
             
+            for(let index = 0; index < jobs.length; index ++){
+                await API.getJobSkills(jobs[index].uuid)
+                            .then(jobSkills => {
+                                const jobWithSkills = {
+                                    ...jobs[index],
+                                    skills: jobSkills
+                                };
+                                jobsWithSkillsBatch.push(jobWithSkills);               
+                })
+            }
+    
+            return jobsWithSkillsBatch;
+        });
+    },
+    getAutocompletedJobsWithSkills: (searchText) => {
+        return getAutocompleteJobs(searchText).then(async jobs => {
+            let jobsWithSkillsBatch: JobInterface[] = [];
+    
+            // Last item in the jobs data is not needed
+            jobs.splice(jobs.length-1, 1)
+
             for(let index = 0; index < jobs.length; index ++){
                 await API.getJobSkills(jobs[index].uuid)
                             .then(jobSkills => {
@@ -88,6 +119,7 @@ const API: APIInterface = {
 interface APIInterface{
     getJobSkills: (jobUUID: string) => Promise<SkillInterface[]>;
     getJobsWithSkills: (nextPage?: number, jobsLimit?: number) => Promise<JobInterface[]>;
+    getAutocompletedJobsWithSkills: (searchText: string) => Promise<JobInterface[]>;
     getJob: (jobUUID: string) => Promise<JobInterface>;
     getRelatedJobsToJob: (jobUUID: string) => Promise<JobInterface[]>;
     getRelatedJobsToSkill: (skillUUID: string) => Promise<JobInterface[]>;

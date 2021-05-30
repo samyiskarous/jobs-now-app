@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 import handleGetJobsWithSkillsBatch from '../../../../actions/allJobsWithSkills';
 import JobsList from '../../../reusable/JobsList';
-import './styles.css'
 
 const AllJobsView = (props: any) => {
 

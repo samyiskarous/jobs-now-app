@@ -1,25 +1,30 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { Redirect, useHistory, useLocation } from 'react-router';
+import { useHistory } from 'react-router';
+import handleGetAutocompletedJobsWithSkills from '../../../../actions/autocompleteJobsWithSkills';
+import useDebounce from '../../../../helpers/debounce';
 import './styles.css'
 
 const SearchInput = (props: any) => {
+    const {dispatch} = props;
 
     const history = useHistory();
-
-    const searchHandler = (searchText: string) => {
+    
+    const debouncedSearchJobsHandler = useDebounce((searchText: string) => {
         if(searchText.length > 3){
             history.push('/search');
+        
+            dispatch(handleGetAutocompletedJobsWithSkills(searchText))
         }
-    }
-
+    }, 1500)
+    
     return (
         <div className="searchBarContainer">
             <input 
                 type="text" 
                 placeholder="Search Keyword" 
                 className="searchInput"
-                onChange={event => searchHandler(event.target.value)}
+                onChange={event => debouncedSearchJobsHandler(event.target.value)}
                 />
         </div>
     );
