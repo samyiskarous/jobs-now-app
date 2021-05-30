@@ -14,7 +14,7 @@ const AutocompletionList = (props: any) => {
     return (
         <div className="autocompletionList">
             {autocompletionJobs.map((job: any, index: any) => {
-                return <Link key={index} to="#">{job.suggestion}</Link>
+                return <Link key={index} to="#" title="Click to view the Job">{job.suggestion}</Link>
             })}
         </div>
     );
