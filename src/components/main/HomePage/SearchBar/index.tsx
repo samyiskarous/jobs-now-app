@@ -4,8 +4,8 @@ import { useHistory } from 'react-router';
 import handleGetJobsByAutoCompletion from '../../../../actions/getJobsByAutocompletion';
 import useDebounce from '../../../../custom-hooks/useDebounce';
 import useComponentVisible from '../../../../custom-hooks/useComponentVisible';
-import ConnectedAutocompletionList from './AutocompletionList';
 import './styles.css'
+import { Link } from 'react-router-dom';
 
 interface SearchInputPropsInterface{
     updateSearchTextHandlerCallback: (searchText: string) => void,
@@ -40,8 +40,13 @@ const SearchInput = (props: SearchInputPropsInterface) => {
             />
             {autocompletionJobs.length > 0 ? (
                 <div ref={ref} className="autoCompletionListContainer">
+                    {/* Controls Hiding/Showing of the autocompletion list */}
                     {isComponentVisible && 
-                        <ConnectedAutocompletionList/>
+                        <div className="autocompletionList">
+                            {autocompletionJobs.map((job: any, index: any) => {
+                                return <Link key={index} to="#" title="Click to view the Job">{job.suggestion}</Link>
+                            })}
+                        </div>
                     }
                 </div>
             ) : null}
