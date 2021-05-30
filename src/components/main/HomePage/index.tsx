@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom';
 // import SearchPage from '../SearchPage';
@@ -9,16 +9,22 @@ import './styles.css'
 
 const HomePage = (props: any) => {
 
+    const [searchText, setSearchText] = useState<string>("");
+
+    const updateSearchTextHandler = (newSearchText: string) => {
+      setSearchText(newSearchText);
+    }
+
     return (
         <>
-          <ConnectedSearchInput/>
+          <ConnectedSearchInput updateSearchTextHandlerCallback={updateSearchTextHandler}/>
           
           <Switch>
             <Route exact path="/">
               <AllJobsView/>
             </Route>
             <Route exact path="/search">
-              <SearchJobsView/>
+              <SearchJobsView searchText={searchText}/>
             </Route>
           </Switch>
         </>

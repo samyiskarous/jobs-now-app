@@ -3,9 +3,15 @@ import { connect } from 'react-redux';
 import handleGetJobsWithSkillsBatch from '../../../../actions/allJobsWithSkills';
 import JobsList from '../../../reusable/JobsList';
 
-const SearchJobsView = (props: any) => {
+interface SearchJobsViewPropsInterface{
+    searchText: string;
+    dispatch?: any;
+    autocompletedJobsWithSkills?: any;
+}
 
-    const {dispatch, autocompletedJobsWithSkills} = props;
+const SearchJobsView = (props: SearchJobsViewPropsInterface) => {
+
+    const {dispatch, autocompletedJobsWithSkills, searchText} = props;
 
     useEffect(() => {
         dispatch(handleGetJobsWithSkillsBatch());
@@ -13,7 +19,9 @@ const SearchJobsView = (props: any) => {
 
     return (
         <>
-            <p className="xlarge-font bold mainPageTitle">Found Jobs</p>
+            <p className="xlarge-font bold mainPageTitle">
+                {`"${searchText}" jobs (${autocompletedJobsWithSkills.length})`}
+            </p>
 
             <JobsList jobs={autocompletedJobsWithSkills} loadOnScrollEnabled={false}/>            
         </>

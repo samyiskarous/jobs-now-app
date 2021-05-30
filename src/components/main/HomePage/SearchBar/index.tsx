@@ -5,13 +5,20 @@ import handleGetAutocompletedJobsWithSkills from '../../../../actions/autocomple
 import useDebounce from '../../../../helpers/debounce';
 import './styles.css'
 
-const SearchInput = (props: any) => {
-    const {dispatch} = props;
+interface SearchInputPropsInterface{
+    updateSearchTextHandlerCallback: (searchText: string) => void,
+    dispatch?: any;
+}
+
+const SearchInput = (props: SearchInputPropsInterface) => {
+    const {dispatch, updateSearchTextHandlerCallback} = props;
 
     const history = useHistory();
     
     const debouncedSearchJobsHandler = useDebounce((searchText: string) => {
-        if(searchText.length > 3){
+        if(searchText.length >= 3){
+            updateSearchTextHandlerCallback(searchText);
+
             history.push('/search');
         
             dispatch(handleGetAutocompletedJobsWithSkills(searchText))
@@ -26,6 +33,9 @@ const SearchInput = (props: any) => {
                 className="searchInput"
                 onChange={event => debouncedSearchJobsHandler(event.target.value)}
                 />
+            <div className="autocompleteList">
+                
+            </div>
         </div>
     );
 }

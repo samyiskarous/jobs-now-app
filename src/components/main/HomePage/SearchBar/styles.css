@@ -1,5 +1,7 @@
 .searchBarContainer{
+    /* Total of spacings on the two sides, to let the Bar take full width */
     --app-width-spacings-summation: (var(--app-width-spacings) * 2);
+    /* To let the Bar start at the most left of the page */
     --negative-app-width-spacings: calc(-1 * var(--app-width-spacings));
 
     height: 9rem;
@@ -8,8 +10,11 @@
     background-color: var(--white);
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    position: relative;
 }
 
 .searchInput{
@@ -18,4 +23,18 @@
     padding: 1rem;
     border-radius: 5px;
     font-size: var(--large-font);
+}
+
+.autocompleteList{
+    position: absolute;
+    top: 75%;
+    padding: 1rem;
+
+    overflow-y: scroll;
+    height: 200px;
+    width: 50%;
+
+    font-size: var(--large-font);
+    
+    background-color: var(--darker-gray);
 }
