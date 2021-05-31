@@ -1,11 +1,12 @@
 import React, {useEffect, useRef } from 'react'
 import { connect } from 'react-redux';
 import { useHistory, useLocation } from 'react-router';
-import handleGetJobsByAutoCompletion from '../../../../actions/getJobsByAutocompletion';
+import handleGetJobsByAutoCompletion from '../../../../redux/actions/getJobsByAutocompletion';
 import useDebounce from '../../../../custom-hooks/useDebounce';
 import useComponentVisible from '../../../../custom-hooks/useComponentVisible';
 import './styles.css'
 import { Link } from 'react-router-dom';
+import SearchIcon from '../../../../assets/SVGs/SearchIcon.svg'
 
 interface SearchInputPropsInterface{
     updateSearchTextHandlerCallback: (searchText: string) => void,
@@ -50,6 +51,9 @@ const SearchInput = (props: SearchInputPropsInterface) => {
 
     return (
         <div className="searchBarContainer">
+
+
+            <img src={SearchIcon} alt="Search Icon" className="svgIconForSearchInput"/>
             <input 
                 type="text" 
                 ref={searchInputRef}
@@ -58,10 +62,7 @@ const SearchInput = (props: SearchInputPropsInterface) => {
                 onChange={event => debouncedSearchJobsHandler(event.target.value)}
                 onClick={() => setIsComponentVisible(true)}
             />
-            {/* <div className="inputContainer">
-                <i className="fa fa-user icon"> </i>
-                <input className="inputField" type="text" placeholder="Username" />
-            </div> */}
+
             {autocompletionJobs.length > 0 ? (
                 <div ref={ref} className="autoCompletionListContainer">
                     {/* Controls Hiding/Showing of the autocompletion list */}

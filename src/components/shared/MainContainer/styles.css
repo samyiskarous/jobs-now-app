@@ -1,6 +1,6 @@
 .mainContainer{
-    margin-left: var(--app-width-spacings);
-    margin-right: var(--app-width-spacings);
+    margin-left: var(--app-horizontal-spacings);
+    margin-right: var(--app-horizontal-spacings);
     margin-top: 3.9rem;
     margin-bottom: 176px;
 }

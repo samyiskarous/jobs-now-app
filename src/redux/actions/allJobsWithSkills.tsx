@@ -1,4 +1,4 @@
-import API from "../util/api-functions";
+import API from "../../util/api-functions";
 
 export const GET_JOBS_WITH_SKILLS_BATCH = 'GET_JOBS_WITH_SKILLS_BATCH';
 

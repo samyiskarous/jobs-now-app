@@ -1,4 +1,4 @@
-import API from "../util/api-functions";
+import API from "../../util/api-functions";
 
 export const SET_AUTOCOMPLETION_JOBS_WITH_SKILLS = 'SET_AUTOCOMPLETION_JOBS_WITH_SKILLS';
 

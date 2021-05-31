@@ -4,12 +4,13 @@
     --gray: #F0F0F0;
     --dark-gray: #D9D9D9;
     --darker-gray: #C4C4C4;
+    --icons-color: #808080;
 
     --medium-font: 18px;
     --large-font: 24px;
     --xlarge-font: 48px;
 
-    --app-width-spacings: 3rem;
+    --app-horizontal-spacings: 3rem;
 }
 
 body{

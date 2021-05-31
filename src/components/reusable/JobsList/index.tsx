@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { connect } from 'react-redux';
-import handleGetJobsWithSkills from '../../../actions/allJobsWithSkills';
+import handleGetJobsWithSkills from '../../../redux/actions/allJobsWithSkills';
 import JobCard from './JobCard';
 import './styles.css'
 

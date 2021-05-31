@@ -1,4 +1,4 @@
-import API from "../util/api-functions";
+import API from "../../util/api-functions";
 import handleGetAndAttachSkillsToAutocompletionJobs from "./attachSkillsToAutocompletionJobs";
 
 export const SET_AUTOCOMPLETION_JOBS = 'SET_AUTOCOMPLETION_JOBS';
@@ -18,7 +18,6 @@ const handleGetJobsByAutoCompletion = (searchText: string) => {
             .then(autocompletionJobs => {
                 // Save Jobs without skills to use for counting
                 dispatch(setAutocompletionJobs(autocompletionJobs))
-                // dispatch(persistSearchQuery(getCurrentURL))
                 // Use the Jobs without skills to get their Skills.
                 dispatch(handleGetAndAttachSkillsToAutocompletionJobs(getState().autocompletionJobs))
             })
