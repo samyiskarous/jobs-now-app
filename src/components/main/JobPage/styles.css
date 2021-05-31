@@ -1,3 +1,7 @@
 .relatedSkillsTitle{
+    margin-bottom: 1.8rem;
+}
+
+.skillTitle, .skillDescription{
     margin-bottom: 1.5rem;
 }

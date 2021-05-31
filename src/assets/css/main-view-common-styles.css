@@ -28,16 +28,13 @@
 
     margin-bottom: 1.5rem;
 
-    background-color: yellow;
+    background-color: var(--light-gray);
 }
 
 .cardProperties{
     display: flex;
-    justify-content: space-between;
-
-    width: 70%;
 }
 
-.cardProperties span{
-    background-color: lightblue;
+.cardProperty:not(:last-child){
+    margin-right: 7rem;
 }

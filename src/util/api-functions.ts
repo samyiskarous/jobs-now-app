@@ -66,10 +66,21 @@ const API: APIInterface = {
     
             return jobsWithSkills;
     },
-    getJob: (jobUUID) => {
+    getJobWithSkills: (jobUUID) => {
+        let jobWithSkills: JobInterface;
         return fetch(`${endpoint}jobs/${jobUUID}`)
                 .then(response => response.json())
-                .then(data => data)
+                .then(async job => {
+
+                    await API.getJobSkills(jobUUID).then(jobSkills => {
+                        jobWithSkills = {
+                            ...job,
+                            skills: jobSkills
+                        }
+                    })
+
+                    return jobWithSkills
+                })
                 .catch((error) => {
                     console.log('error', error)
                 });
@@ -77,7 +88,7 @@ const API: APIInterface = {
     getRelatedJobsToJob: (jobUUID) => {
         return fetch(`${endpoint}jobs/${jobUUID}/related_jobs`)
                 .then(response => response.json())
-                .then(data => data.jobs)
+                .then((data: RelatedJobsResponseInterface) => data.related_job_titles.slice(0, 15))
                 .catch((error) => {
                     console.log('error', error)
                 });
@@ -109,13 +120,13 @@ interface APIInterface{
     getJobsByAutocompletion: (searchText: string) => Promise<SuggestedJobInterface>
     getAndAttachSkillsToAutocompletionJobs: (jobsMissingSkills: SuggestedJobInterface[]) => Promise<SuggestedJobInterface[]>;
     
-    getJob: (jobUUID: string) => Promise<JobInterface>;
-    getRelatedJobsToJob: (jobUUID: string) => Promise<JobInterface[]>;
+    getJobWithSkills: (jobUUID: string) => Promise<JobInterface | void>;
+    getRelatedJobsToJob: (jobUUID: string) => Promise<RelatedJobInterface[] | void>;
     getRelatedJobsToSkill: (skillUUID: string) => Promise<JobInterface[]>;
     getRelatedSkillsToSkill: (skillUUID: string) => Promise<SkillInterface[]>;
 }
 
-interface SkillInterface{
+export interface SkillInterface{
     description: string;
     importance: number;
     level: number;
@@ -128,7 +139,7 @@ interface SkillInterface{
 export interface JobInterface{
     normalized_job_title: string;
     parent_uuid: string;
-    skills?: SkillInterface[];
+    skills: SkillInterface[];
     title: string;
     uuid: string;
 }
@@ -139,6 +150,17 @@ export interface SuggestedJobInterface{
     skills?: SkillInterface[];
     suggestion: string;
     uuid: string;
+}
+
+interface RelatedJobsResponseInterface{
+    uuid: string,
+    related_job_titles: RelatedJobInterface[]
+}
+
+export interface RelatedJobInterface{
+    uuid: string,
+    title: string,
+    parent_uuid: string
 }
 
 // END: Data Interfaces

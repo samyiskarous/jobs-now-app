@@ -43,31 +43,15 @@ const SkillPage = (props: any) => {
                             {/* {jobWithSkills.skills.map} */}
                             <div className="mainViewCard">
                                 <div className="cardProperties">
-                                    <span className="small-font">
+                                    <span className="small-font cardProperty">
                                         <span className="bold">Property: &nbsp;</span>
                                         3.7
                                     </span>
-                                    <span className="small-font">
+                                    <span className="small-font cardProperty">
                                         <span className="bold">Property: &nbsp;</span>
                                         3.7
                                     </span>
-                                    <span className="small-font">
-                                        <span className="bold">Property: &nbsp;</span>
-                                        3.7
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="mainViewCard">
-                                <div className="cardProperties">
-                                    <span className="small-font">
-                                        <span className="bold">Property: &nbsp;</span>
-                                        3.7
-                                    </span>
-                                    <span className="small-font">
-                                        <span className="bold">Property: &nbsp;</span>
-                                        3.7
-                                    </span>
-                                    <span className="small-font">
+                                    <span className="small-font cardProperty">
                                         <span className="bold">Property: &nbsp;</span>
                                         3.7
                                     </span>

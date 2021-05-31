@@ -1,93 +1,116 @@
-import React, { ReactNode } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import TwoSidedView from '../../reusable/TwoSidedView';
 import '../../../assets/css/main-view-common-styles.css';
 import './styles.css'
+import getAndSetJobPageData from '../../../redux/actions/getJobPageData';
+import { RelatedJobInterface, SkillInterface } from '../../../util/api-functions';
+import { JobPageStateInterface } from '../../../redux/reducers/jobPageDataReducer';
+
 
 interface JobPagePropsInterface{
-
+    jobPageState: JobPageStateInterface;
+    callGetAndSetJobPageData?: any;
 }
 
-const JobPage = (props: any) => {
-    const {jobPage} = props;
-    console.log(props)
+const JobPage = (props: JobPagePropsInterface) => {
+    const {callGetAndSetJobPageData, jobPageState} = props;
+    const {jobWithSkills, relatedJobs} = jobPageState.data;
 
-    const relatedJobsList: ReactNode = (
-        <ul>
-            {/* {jobPage.relatedJobs.map((relatedJob: any, index: any) => {
-                return (
-                    <li key={index}>
-                        <Link target="_blank" to={`/jobs/${relatedJob.id && 0}`} className="medium-font plainLink">
-                            {relatedJob.title && 'Job Title'}
-                        </Link>
-                    </li>
-                )
-            })} */}
-        </ul>
-    )
+    const {uuid: jobUUID} = useParams<any>();
 
+    useEffect(() => {
+        callGetAndSetJobPageData(jobUUID)
+    }, [callGetAndSetJobPageData, jobUUID])
+    
+    console.log('OFFF', jobPageState.loading)
+
+    if(jobPageState.loading){
+        console.log('NICE');
+        return null;    
+    }
+    
+    
     return (
-        <>
-            <p className="xlarge-font bold mainPageTitleSpacings">Job Title</p>
-            
+        <>  
+            <p className="xlarge-font bold mainPageTitleSpacings">{jobWithSkills.title}</p>
+    
             <TwoSidedView
                 mainViewChildren={
                     <div className="pageMainView">
                         <p className="large-font bold relatedSkillsTitle">Related Skills</p>
 
                         <div className="mainViewCardsList">
-                            {/* {jobWithSkills.skills.map} */}
-                            <div className="mainViewCard">
-                                <div className="cardProperties">
-                                    <span className="small-font">
-                                        <span className="bold">Property: &nbsp;</span>
-                                        3.7
-                                    </span>
-                                    <span className="small-font">
-                                        <span className="bold">Property: &nbsp;</span>
-                                        3.7
-                                    </span>
-                                    <span className="small-font">
-                                        <span className="bold">Property: &nbsp;</span>
-                                        3.7
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="mainViewCard">
-                                <div className="cardProperties">
-                                    <span className="small-font">
-                                        <span className="bold">Property: &nbsp;</span>
-                                        3.7
-                                    </span>
-                                    <span className="small-font">
-                                        <span className="bold">Property: &nbsp;</span>
-                                        3.7
-                                    </span>
-                                    <span className="small-font">
-                                        <span className="bold">Property: &nbsp;</span>
-                                        3.7
-                                    </span>
-                                </div>
-                            </div>
+                            {jobWithSkills.skills.map((skill, index) => {
+                                return <SkillCard key={index} skill={skill}/>
+                            })}
+                            
                         </div>
                     </div>
                 }
                 sidebarData={{
                     title: 'Related Jobs:',
-                    listData: relatedJobsList
+                    listData: <RelatedJobsList relatedJobs={relatedJobs}/>
                 }}
             />
         </>
     );
 }
 
+const SkillCard = (props: {skill: SkillInterface}) => {
+    const {skill} = props;
+
+    return (
+        <div className="mainViewCard">
+            <Link 
+                to={`/skills/${skill.skill_uuid}`} 
+                className="large-font bold plainLink skillTitle">
+                {skill.skill_name}
+            </Link>
+            <p className="skillDescription">{skill.description}</p>
+            <div className="cardProperties">
+                <span className="small-font cardProperty">
+                    <span className="bold">Level: &nbsp;</span>
+                    {skill.level}
+                </span>
+                <span className="small-font cardProperty">
+                    <span className="bold">Importance: &nbsp;</span>
+                    {skill.importance}
+                </span>
+
+            </div>
+        </div>
+    );
+}
+
+
 const mapStateToProps = (state: any) => {
     return {
-        jobPage: state.jobPage,
+        jobPageState: state.jobPageState,
     }
 }
 
-const ConnectedJobPage = connect(mapStateToProps)(JobPage);
+const RelatedJobsList = (props: {relatedJobs: RelatedJobInterface[]}) => (
+    <ul>
+        {props.relatedJobs.map((relatedJob, index) => {
+            return (
+                <li key={index}>
+                    <Link to={`/jobs/${relatedJob.uuid}`} className="medium-font plainLink">
+                        {relatedJob.title}
+                    </Link>
+                </li>
+            )
+        })}
+    </ul>
+);
+
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        callGetAndSetJobPageData: (jobUUID: string) => dispatch(getAndSetJobPageData(jobUUID))
+    }
+}
+
+const ConnectedJobPage = connect(mapStateToProps, mapDispatchToProps)(JobPage);
 
 export default ConnectedJobPage;
