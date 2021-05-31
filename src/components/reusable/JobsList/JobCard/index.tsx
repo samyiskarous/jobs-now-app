@@ -24,7 +24,7 @@ const JobCard = (props: JobCardInterface) => {
                         job?.skills?.map((skill: any, index: number) => {
                             return (
                                 <span key={index} className="skillBadge">
-                                    <Link to="#" className="skillBadgeLink">
+                                    <Link to={`skills/${skill.skill_uuid}`} className="skillBadgeLink">
                                         {skill.skill_name}
                                     </Link>
                                 </span>
@@ -34,7 +34,7 @@ const JobCard = (props: JobCardInterface) => {
                 </div>
             </div>
 
-            <Link to="#" className="plainLink"><span className="medium-font">View Job Details</span></Link>
+            <Link to={`jobs/${job.uuid}`} className="plainLink"><span className="medium-font">View Job Details</span></Link>
         </div>
     );
 }

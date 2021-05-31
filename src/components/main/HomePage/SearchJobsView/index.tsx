@@ -24,7 +24,7 @@ const SearchJobsView = (props: SearchJobsViewPropsInterface) => {
         persistedSearchQueries
     } = props;
 
-    const sidebarListItems: ReactNode = (
+    const sidebarList: ReactNode = (
         <ul>
             {persistedSearchQueries.map((searchQueryValue, index) => {
                 return (
@@ -44,12 +44,13 @@ const SearchJobsView = (props: SearchJobsViewPropsInterface) => {
 
     return (
         <>
-            <p className="xlarge-font bold mainPageTitle">
+            <p className="xlarge-font bold mainPageTitleSpacings">
                 {`"${searchText}" jobs (${autocompletionJobs?.length})`}
             </p>
 
             <TwoSidedView 
                 mainViewChildren={
+                    // Render the Job Cards when its data is ready
                     autocompletionJobsWithSkills.length ?
                         (
                             <JobsList jobs={autocompletionJobsWithSkills} loadOnScrollEnabled={false}/> 
@@ -57,8 +58,8 @@ const SearchJobsView = (props: SearchJobsViewPropsInterface) => {
                     : null 
                 }
                 sidebarData={{
-                    title:"Search History",
-                    listData: sidebarListItems
+                    title:"Search History:",
+                    listData: sidebarList
                 }}
             />
         </>

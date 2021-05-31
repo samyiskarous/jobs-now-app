@@ -9,6 +9,10 @@ interface TwoSidedViewPropsInterface{
     };
 }
 
+/**
+ * Component's purpose is to render the Search/Job/Skill Pages consistently
+ * since they share the exact same structure
+ */
 const TwoSidedView = (props: TwoSidedViewPropsInterface) => {
     return (
         <div className="twoSidedViewContainer">

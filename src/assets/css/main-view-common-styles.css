@@ -1,0 +1,43 @@
+.pageMainView{
+    display: flex;
+    flex-direction: column;
+
+    padding-top: 2rem;
+    padding-bottom: 3.5rem;
+
+    padding-left: 2.3rem;
+    padding-right: 1.5rem;
+
+    background-color: var(--white);
+
+    /* Will take 100% of it's 70% parent which is in TwoSidedView */
+    width: 100%;
+    height: 100%;
+}
+
+.mainViewCardsList{
+    display: flex;
+    flex-direction: column;
+}
+
+.mainViewCard{
+    display: flex;
+    flex-direction: column;
+
+    padding: 1.5rem;
+
+    margin-bottom: 1.5rem;
+
+    background-color: yellow;
+}
+
+.cardProperties{
+    display: flex;
+    justify-content: space-between;
+
+    width: 70%;
+}
+
+.cardProperties span{
+    background-color: lightblue;
+}

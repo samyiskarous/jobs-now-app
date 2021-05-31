@@ -8,6 +8,8 @@ import {
 import './styles.css'
 import MainContainer from './shared/MainContainer';
 import HomePage from './main/HomePage';
+import ConnectedJobPage from './main/JobPage';
+import ConnectedSkillPage from './main/SkillPage';
 
 const App = (props: any) => {
 
@@ -27,11 +29,11 @@ const App = (props: any) => {
             <HomePage/>
           </Route>
 
-          <Route exact path="/job/:uuid">
-            {/* <JobView /> */}
+          <Route exact path="/jobs/:uuid">
+            <ConnectedJobPage />
           </Route>
-          <Route exact path="/skill/:uuid">
-            {/* <SkillView /> */}
+          <Route exact path="/skills/:uuid">
+            <ConnectedSkillPage />
           </Route>
         </Switch>
       </MainContainer>
