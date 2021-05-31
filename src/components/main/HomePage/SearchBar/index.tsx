@@ -10,15 +10,15 @@ import SearchIcon from '../../../../assets/SVGs/SearchIcon.svg'
 import updatePersistedSearchQueries from '../../../../helper-functions.tsx/updatePersistedSearchQueries';
 
 interface SearchInputPropsInterface{
+    callHandleGetJobsByAutoCompletion: (searchText: string) => void;
     updateSearchTextHandlerCallback: (searchText: string) => void,
     updatePersistedSearchQueriesStateCallback: (newPersistedSearchQueries: string[]) => void;
-    dispatch?: any;
     autocompletionJobs?: any;
 }
 
 const SearchInput = (props: SearchInputPropsInterface) => {
     const {
-        dispatch, 
+        callHandleGetJobsByAutoCompletion, 
         updateSearchTextHandlerCallback, 
         updatePersistedSearchQueriesStateCallback,
         autocompletionJobs
@@ -36,7 +36,7 @@ const SearchInput = (props: SearchInputPropsInterface) => {
         const newPersistedSearchQueries = updatePersistedSearchQueries(searchText);
         updatePersistedSearchQueriesStateCallback(newPersistedSearchQueries);
 
-        dispatch(handleGetJobsByAutoCompletion(searchText))
+        callHandleGetJobsByAutoCompletion(searchText);
     }
     
     const debouncedSearchJobsHandler = useDebounce((searchText: string) => {
@@ -96,6 +96,12 @@ const mapStateToProps = (state: any) => {
     };
 }
 
-const ConnectedSearchInput = connect(mapStateToProps)(SearchInput);
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        callHandleGetJobsByAutoCompletion: (searchText: string) => dispatch(handleGetJobsByAutoCompletion(searchText))
+    }
+}
+
+const ConnectedSearchInput = connect(mapStateToProps, mapDispatchToProps)(SearchInput);
 
 export default ConnectedSearchInput
