@@ -24,8 +24,6 @@ const JobPage = (props: JobPagePropsInterface) => {
         callGetAndSetJobPageData(jobUUID)
     }, [callGetAndSetJobPageData, jobUUID])
     
-    console.log('OFFF', jobPageState.loading)
-
     if(jobPageState.loading){
         console.log('NICE');
         return null;    

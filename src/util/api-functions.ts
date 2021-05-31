@@ -21,6 +21,14 @@ const API: APIInterface = {
                     console.log('error', error)
                 });
     },
+    getSkill: (skillUUID: string) => {
+        return fetch(`${endpoint}skills/${skillUUID}`)
+                .then(response => response.json())
+                .then(skill => skill)
+                .catch((error) => {
+                    console.log('error', error)
+                });
+    },
     getJobsWithSkills: (nextPage = 0, jobsLimit = 12) => {
         return getAllJobs(nextPage, jobsLimit).then(async jobs => {
             let jobsWithSkillsBatch: JobInterface[] = [];
@@ -93,6 +101,7 @@ const API: APIInterface = {
                     console.log('error', error)
                 });
     },
+
     getRelatedJobsToSkill: (skillUUID) => {
         return fetch(`${endpoint}skills/${skillUUID}/related_jobs`)
                 .then(response => response.json())
@@ -115,6 +124,7 @@ const API: APIInterface = {
 // START: Data Interfaces
 interface APIInterface{
     getJobSkills: (jobUUID: string) => Promise<SkillInterface[]>;
+    getSkill: (skillUUID: string) => Promise<SkillInterface>;
     getJobsWithSkills: (nextPage?: number, jobsLimit?: number) => Promise<JobInterface[]>;
 
     getJobsByAutocompletion: (searchText: string) => Promise<SuggestedJobInterface>
