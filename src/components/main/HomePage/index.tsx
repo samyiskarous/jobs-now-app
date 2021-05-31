@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom';
-import { SearchQueryInterface } from '../../../helper-functions.tsx/updatePersistedSearchQueries';
 // import SearchPage from '../SearchPage';
 import AllJobsView from './AllJobsView';
 import ConnectedSearchInput from './SearchBar';
@@ -11,13 +10,13 @@ import './styles.css'
 const HomePage = (props: any) => {
 
     const [searchText, setSearchText] = useState<string>("");
-    const [persistedSearchQueriesState, setPersistedSearchQuerieState] = useState<SearchQueryInterface[]>(JSON.parse(localStorage.getItem('searchQueries') || '[]'))
+    const [persistedSearchQueriesState, setPersistedSearchQuerieState] = useState<string[]>(JSON.parse(localStorage.getItem('searchQueries') || '[]'))
 
     const updateSearchTextHandler = (newSearchText: string) => {
       setSearchText(newSearchText);
     }
 
-    const updatePersistedSearchQueriesStateHandler = (newPersistedSearchQueries: SearchQueryInterface[]) => {
+    const updatePersistedSearchQueriesStateHandler = (newPersistedSearchQueries: string[]) => {
       setPersistedSearchQuerieState(oldState => newPersistedSearchQueries);
     }
 

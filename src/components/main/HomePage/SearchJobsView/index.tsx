@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { SearchQueryInterface } from '../../../../helper-functions.tsx/updatePersistedSearchQueries';
 import handleGetJobsWithSkillsBatch from '../../../../redux/actions/allJobsWithSkills';
 import JobsList from '../../../reusable/JobsList';
 import './styles.css'
@@ -11,7 +10,7 @@ interface SearchJobsViewPropsInterface{
     dispatch?: any;
     autocompletionJobsWithSkills?: any;
     autocompletionJobs?: any;
-    persistedSearchQueries: SearchQueryInterface[];
+    persistedSearchQueries: string[];
 }
 
 const SearchJobsView = (props: SearchJobsViewPropsInterface) => {
@@ -46,11 +45,11 @@ const SearchJobsView = (props: SearchJobsViewPropsInterface) => {
                 <div className="sidebarContainer">
                     <p className="large-font bold">Search history:</p>
                     <ul>
-                        {persistedSearchQueries.map((searchQueryData, index) => {
+                        {persistedSearchQueries.map((searchQueryValue, index) => {
                             return (
                                 <li key={index} className="sidebarListItem">
-                                    <Link target="_blank" to={`/search${searchQueryData.searchQuery}`} className="medium-font plainLink">
-                                        {searchQueryData.searchText}
+                                    <Link target="_blank" to={`/search?query=${searchQueryValue}`} className="medium-font plainLink">
+                                        {searchQueryValue}
                                     </Link>
                                 </li>
                             )

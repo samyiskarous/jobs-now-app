@@ -7,11 +7,11 @@ import useComponentVisible from '../../../../custom-hooks/useComponentVisible';
 import './styles.css'
 import { Link } from 'react-router-dom';
 import SearchIcon from '../../../../assets/SVGs/SearchIcon.svg'
-import updatePersistedSearchQueries, { SearchQueryInterface } from '../../../../helper-functions.tsx/updatePersistedSearchQueries';
+import updatePersistedSearchQueries from '../../../../helper-functions.tsx/updatePersistedSearchQueries';
 
 interface SearchInputPropsInterface{
     updateSearchTextHandlerCallback: (searchText: string) => void,
-    updatePersistedSearchQueriesStateCallback: (newPersistedSearchQueries: SearchQueryInterface[]) => void;
+    updatePersistedSearchQueriesStateCallback: (newPersistedSearchQueries: string[]) => void;
     dispatch?: any;
     autocompletionJobs?: any;
 }
@@ -33,9 +33,7 @@ const SearchInput = (props: SearchInputPropsInterface) => {
     const initiateSearching = (searchText: string) => {
         updateSearchTextHandlerCallback(searchText);
 
-        const searchQuery = `?query=${searchText}`;
-        const searchQueryData: SearchQueryInterface = {searchText, searchQuery};
-        const newPersistedSearchQueries = updatePersistedSearchQueries(searchQueryData);
+        const newPersistedSearchQueries = updatePersistedSearchQueries(searchText);
         updatePersistedSearchQueriesStateCallback(newPersistedSearchQueries);
 
         dispatch(handleGetJobsByAutoCompletion(searchText))
