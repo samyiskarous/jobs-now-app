@@ -5,11 +5,11 @@ import JobsList from '../../../reusable/JobsList';
 
 const AllJobsView = (props: any) => {
 
-    const {dispatch, allJobsWithSkills} = props;
+    const {callHandleGetJobsWithSkillsBatch, allJobsWithSkills} = props;
 
     useEffect(() => {
-        dispatch(handleGetJobsWithSkillsBatch());
-    }, [dispatch]);
+        callHandleGetJobsWithSkillsBatch();
+    }, [callHandleGetJobsWithSkillsBatch]);
 
     return (
         <>
@@ -25,7 +25,15 @@ const mapStateToProps = (state: any) => {
         allJobsWithSkills: state.allJobsWithSkills
     }
 }
+
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        callHandleGetJobsWithSkillsBatch: () => {
+            dispatch(handleGetJobsWithSkillsBatch())
+        }
+    }
+}
   
-const ConnectedAllJobsView = connect(mapStateToProps)(AllJobsView);
+const ConnectedAllJobsView = connect(mapStateToProps, mapDispatchToProps)(AllJobsView);
 
 export default ConnectedAllJobsView;
