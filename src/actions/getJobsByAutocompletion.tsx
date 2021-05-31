@@ -16,7 +16,10 @@ const handleGetJobsByAutoCompletion = (searchText: string) => {
     return (dispatch: any, getState: any) => {
         API.getJobsByAutocompletion(searchText)
             .then(autocompletionJobs => {
+                // Save Jobs without skills to use for counting
                 dispatch(setAutocompletionJobs(autocompletionJobs))
+                // dispatch(persistSearchQuery(getCurrentURL))
+                // Use the Jobs without skills to get their Skills.
                 dispatch(handleGetAndAttachSkillsToAutocompletionJobs(getState().autocompletionJobs))
             })
             .catch((error) => {
