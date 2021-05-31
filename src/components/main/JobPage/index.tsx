@@ -25,10 +25,8 @@ const JobPage = (props: JobPagePropsInterface) => {
     }, [callGetAndSetJobPageData, jobUUID])
     
     if(jobPageState.loading){
-        console.log('NICE');
         return null;    
     }
-    
     
     return (
         <>  
@@ -83,11 +81,6 @@ const SkillCard = (props: {skill: SkillInterface}) => {
 }
 
 
-const mapStateToProps = (state: any) => {
-    return {
-        jobPageState: state.jobPageState,
-    }
-}
 
 const RelatedJobsList = (props: {relatedJobs: RelatedJobInterface[]}) => (
     <ul>
@@ -102,6 +95,12 @@ const RelatedJobsList = (props: {relatedJobs: RelatedJobInterface[]}) => (
         })}
     </ul>
 );
+
+const mapStateToProps = (state: any) => {
+    return {
+        jobPageState: state.jobPageState,
+    }
+}
 
 const mapDispatchToProps = (dispatch: any) => {
     return {

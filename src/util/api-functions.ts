@@ -105,7 +105,7 @@ const API: APIInterface = {
     getRelatedJobsToSkill: (skillUUID) => {
         return fetch(`${endpoint}skills/${skillUUID}/related_jobs`)
                 .then(response => response.json())
-                .then(data => data.jobs)
+                .then(data => data.jobs.slice(0, 10))
                 .catch((error) => {
                     console.log('error', error)
                 });
@@ -144,6 +144,7 @@ export interface SkillInterface{
     skill_name: string;
     skill_type: string;
     skill_uuid: string;
+    uuid: string;
 }
 
 export interface JobInterface{
@@ -151,7 +152,9 @@ export interface JobInterface{
     parent_uuid: string;
     skills: SkillInterface[];
     title: string;
+    job_title: string;
     uuid: string;
+    job_uuid: string;
 }
 
 export interface SuggestedJobInterface{
