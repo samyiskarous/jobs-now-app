@@ -12,7 +12,7 @@ const JobCard = (props: JobCardInterface) => {
     return (
         <div className="jobCard">
             {/* Card Title */}
-            <p className="large-font bold">{job.title || job.suggestion}</p>
+            <p className="large-font bold jobCardTitle">{job.title || job.suggestion}</p>
             
             {/* Required Skills */}
 

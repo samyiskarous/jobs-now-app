@@ -1,0 +1,25 @@
+.searchJobsViewContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.mainViewContainer{
+    width: 75%
+}
+
+.sidebarContainer{
+    display: flex;
+    flex-direction: column;
+    
+    width: 20%;
+    height: fit-content;
+
+    padding: 1.8rem;
+
+    background-color: var(--dark-gray);
+}
+
+.sidebarListItem{
+    margin-top: 0.8rem;
+}

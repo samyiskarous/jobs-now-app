@@ -7,15 +7,22 @@ import useComponentVisible from '../../../../custom-hooks/useComponentVisible';
 import './styles.css'
 import { Link } from 'react-router-dom';
 import SearchIcon from '../../../../assets/SVGs/SearchIcon.svg'
+import updatePersistedSearchQueries, { SearchQueryInterface } from '../../../../helper-functions.tsx/updatePersistedSearchQueries';
 
 interface SearchInputPropsInterface{
     updateSearchTextHandlerCallback: (searchText: string) => void,
+    updatePersistedSearchQueriesStateCallback: (newPersistedSearchQueries: SearchQueryInterface[]) => void;
     dispatch?: any;
     autocompletionJobs?: any;
 }
 
 const SearchInput = (props: SearchInputPropsInterface) => {
-    const {dispatch, updateSearchTextHandlerCallback, autocompletionJobs} = props;
+    const {
+        dispatch, 
+        updateSearchTextHandlerCallback, 
+        updatePersistedSearchQueriesStateCallback,
+        autocompletionJobs
+    } = props;
     const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
 
     const history = useHistory();
@@ -25,6 +32,12 @@ const SearchInput = (props: SearchInputPropsInterface) => {
 
     const initiateSearching = (searchText: string) => {
         updateSearchTextHandlerCallback(searchText);
+
+        const searchQuery = `?query=${searchText}`;
+        const searchQueryData: SearchQueryInterface = {searchText, searchQuery};
+        const newPersistedSearchQueries = updatePersistedSearchQueries(searchQueryData);
+        updatePersistedSearchQueriesStateCallback(newPersistedSearchQueries);
+
         dispatch(handleGetJobsByAutoCompletion(searchText))
     }
     
@@ -51,7 +64,6 @@ const SearchInput = (props: SearchInputPropsInterface) => {
 
     return (
         <div className="searchBarContainer">
-
 
             <img src={SearchIcon} alt="Search Icon" className="svgIconForSearchInput"/>
             <input 

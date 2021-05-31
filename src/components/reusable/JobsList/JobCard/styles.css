@@ -1,14 +1,26 @@
 
 .jobCard{
-    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: fit-content;
+    min-height: 16rem;
     width: 49%;
     background-color: var(--white);
-    margin-bottom: 32px;
 
-    padding-top: 37px;
+    margin-bottom: 2rem;
+
+    padding-top: 1.5rem;
     padding-bottom: 23px;
     padding-left: 36px;
     padding-right: 75px;
+}
+
+.jobCardTitle{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 85%;
 }
 
 .requiredSkillsSection{
@@ -20,6 +32,8 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+
+    max-height: 4.5rem;
 
     margin-top: 10px;
 }
