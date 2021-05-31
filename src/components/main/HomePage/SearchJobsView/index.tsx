@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { ReactNode, useEffect } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import handleGetJobsWithSkillsBatch from '../../../../redux/actions/allJobsWithSkills';
 import JobsList from '../../../reusable/JobsList';
+import TwoSidedView from '../../../reusable/TwoSidedView';
 import './styles.css'
 
 interface SearchJobsViewPropsInterface{
@@ -23,6 +24,20 @@ const SearchJobsView = (props: SearchJobsViewPropsInterface) => {
         persistedSearchQueries
     } = props;
 
+    const sidebarListItems: ReactNode = (
+        <ul>
+            {persistedSearchQueries.map((searchQueryValue, index) => {
+                return (
+                    <li key={index}>
+                        <Link target="_blank" to={`/search?query=${searchQueryValue}`} className="medium-font plainLink">
+                            {searchQueryValue}
+                        </Link>
+                    </li>
+                )
+            })}
+        </ul>
+    );
+
     useEffect(() => {
         dispatch(handleGetJobsWithSkillsBatch());
     }, [dispatch]);
@@ -33,30 +48,19 @@ const SearchJobsView = (props: SearchJobsViewPropsInterface) => {
                 {`"${searchText}" jobs (${autocompletionJobs?.length})`}
             </p>
 
-            <div className="searchJobsViewContainer">
-                <div className="mainViewContainer">
-                    {autocompletionJobsWithSkills.length ?
+            <TwoSidedView 
+                mainViewChildren={
+                    autocompletionJobsWithSkills.length ?
                         (
-                        <JobsList jobs={autocompletionJobsWithSkills} loadOnScrollEnabled={false}/> 
+                            <JobsList jobs={autocompletionJobsWithSkills} loadOnScrollEnabled={false}/> 
                         )
-                        : null           
-                    }
-                </div>
-                <div className="sidebarContainer">
-                    <p className="large-font bold">Search history:</p>
-                    <ul>
-                        {persistedSearchQueries.map((searchQueryValue, index) => {
-                            return (
-                                <li key={index} className="sidebarListItem">
-                                    <Link target="_blank" to={`/search?query=${searchQueryValue}`} className="medium-font plainLink">
-                                        {searchQueryValue}
-                                    </Link>
-                                </li>
-                            )
-                        })}
-                    </ul>
-                </div>
-            </div>
+                    : null 
+                }
+                sidebarData={{
+                    title:"Search History",
+                    listData: sidebarListItems
+                }}
+            />
         </>
     );
 }

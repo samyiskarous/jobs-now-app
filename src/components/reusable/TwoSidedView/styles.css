@@ -1,0 +1,25 @@
+.twoSidedViewContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.mainViewContainer{
+    width: 75%
+}
+
+.sidebarContainer{
+    display: flex;
+    flex-direction: column;
+    
+    height: fit-content;
+    width: 20%;
+
+    padding: 1.5rem;
+
+    background-color: var(--dark-gray);
+}
+
+.sidebarContainer ul li{
+    margin-top: 0.8rem;
+}
