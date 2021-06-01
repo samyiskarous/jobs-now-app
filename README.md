@@ -1,7 +1,7 @@
 # JobsNow App
 
-Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-Implemented by [Samy George Escarous](https://github.com/samyiskarous)
+Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\
+Implemented by [Samy George Escarous](https://github.com/samyiskarous).
 
 ## Notes regarding the Project's structure
 
