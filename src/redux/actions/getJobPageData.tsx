@@ -32,7 +32,8 @@ const getAndSetJobPageData = (jobUUID: string) => {
                 API.getRelatedJobsToJob(jobUUID).then((relatedJobs) => {
                     dispatch(setJobPageData(jobWithSkills, relatedJobs));
                 })
-            }).catch((error: any) => {
+            })
+            .catch((error: any) => {
                 dispatch({type: JOB_PAGE_DATA_HAS_ERROR, payload: error.message})
             })
     }   

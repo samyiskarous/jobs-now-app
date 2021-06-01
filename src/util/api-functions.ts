@@ -94,10 +94,10 @@ const API: APIInterface = {
                                 skills: jobSkills
                             }
                         })
+                        
+                        return jobWithSkills
                     }
-                    
-
-                    return jobWithSkills
+                
                 })
                 .catch((error) => {
                     throw new Error(error.message);

@@ -18,8 +18,8 @@ export interface JobPageStateInterface extends InitialStateInterface{
 
 const initialState = {
     loading: true,
-    error: {},
-    data: "",
+    error: "",
+    data: [],
 }
 
 export const jobPageDataReducer = (jobPageState = initialState, action: any) => {
@@ -28,13 +28,13 @@ export const jobPageDataReducer = (jobPageState = initialState, action: any) => 
         case GET_JOB_PAGE_DATA:
             return {
                 loading: true,
-                error: {},
+                error: "",
                 data: [],
             }
         case SET_JOB_PAGE_DATA: 
             return {
                 loading: false,
-                error: {},
+                error: "",
                 data: {...action.payload},
             }
         case JOB_PAGE_DATA_HAS_ERROR:
