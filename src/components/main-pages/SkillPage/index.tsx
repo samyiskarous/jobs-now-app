@@ -8,6 +8,7 @@ import getAndSetSkillPageData from '../../../redux/actions/getSkillPageData';
 import { SkillPageStateInterface } from '../../../redux/reducers/skillPageReducer';
 import { JobInterface, SkillInterface } from '../../../util/api-functions';
 import Loader from '../../reusable/Loader';
+import AlertMessage from '../../reusable/AlertMessage';
 
 interface SkillPagePropsInterface{
     skillPageState: SkillPageStateInterface;
@@ -27,6 +28,9 @@ const SkillPage = (props: SkillPagePropsInterface) => {
     if(skillPageState.loading){
         return <Loader />
     }
+
+    if(skillPageState.error !== "")
+        return <AlertMessage message={skillPageState.error}/>
 
     return (
         <>

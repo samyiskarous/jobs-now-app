@@ -24,9 +24,12 @@ const API: APIInterface = {
     getSkill: (skillUUID: string) => {
         return fetch(`${endpoint}skills/${skillUUID}`)
                 .then(response => response.json())
-                .then(skill => skill)
+                .then(skill => {
+                    if(skill.error !== undefined)
+                        throw new Error(skill.error.message);
+                })
                 .catch((error) => {
-                    console.log('error', error)
+                    throw new Error(error);
                 });
     },
     getJobsWithSkills: (nextPage = 0, jobsLimit = 12) => {
@@ -79,18 +82,21 @@ const API: APIInterface = {
         return fetch(`${endpoint}jobs/${jobUUID}`)
                 .then(response => response.json())
                 .then(async job => {
+                    if(job.error !== undefined)
+                        throw new Error(job.error.message);
 
-                    await API.getJobSkills(jobUUID).then(jobSkills => {
-                        jobWithSkills = {
-                            ...job,
-                            skills: jobSkills
-                        }
-                    })
+                        await API.getJobSkills(jobUUID).then(jobSkills => {
+                            jobWithSkills = {
+                                ...job,
+                                skills: jobSkills
+                            }
+                        })
+                    
 
                     return jobWithSkills
                 })
                 .catch((error) => {
-                    console.log('error', error)
+                    throw new Error(error.message);
                 });
     },
     getRelatedJobsToJob: (jobUUID) => {
@@ -124,7 +130,7 @@ const API: APIInterface = {
 // START: Data Interfaces
 interface APIInterface{
     getJobSkills: (jobUUID: string) => Promise<SkillInterface[]>;
-    getSkill: (skillUUID: string) => Promise<SkillInterface>;
+    getSkill: (skillUUID: string) => any;
     getJobsWithSkills: (nextPage?: number, jobsLimit?: number) => Promise<JobInterface[]>;
 
     getJobsByAutocompletion: (searchText: string) => Promise<JobInterface>

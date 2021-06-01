@@ -1,10 +1,10 @@
 import { JobInterface, RelatedJobInterface } from "../../util/api-functions";
-import { GET_JOB_PAGE_DATA, SET_JOB_PAGE_DATA } from "../actions/getJobPageData";
+import { GET_JOB_PAGE_DATA, JOB_PAGE_DATA_HAS_ERROR, SET_JOB_PAGE_DATA } from "../actions/getJobPageData";
 
 // COMMON
 interface InitialStateInterface{
     loading: boolean;
-    error: object;
+    error: string;
 }
 
 interface JobPageDataInterface{
@@ -19,7 +19,7 @@ export interface JobPageStateInterface extends InitialStateInterface{
 const initialState = {
     loading: true,
     error: {},
-    data: [],
+    data: "",
 }
 
 export const jobPageDataReducer = (jobPageState = initialState, action: any) => {
@@ -36,6 +36,12 @@ export const jobPageDataReducer = (jobPageState = initialState, action: any) => 
                 loading: false,
                 error: {},
                 data: {...action.payload},
+            }
+        case JOB_PAGE_DATA_HAS_ERROR:
+            return {
+                loading: false,
+                error: action.payload,
+                data: [],
             }
         default:
             return jobPageState

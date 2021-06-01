@@ -2,6 +2,7 @@ import API, { JobInterface, RelatedJobInterface } from "../../util/api-functions
 
 export const GET_JOB_PAGE_DATA = 'GET_JOB_PAGE_DATA';
 export const SET_JOB_PAGE_DATA = 'SET_JOB_PAGE_DATA';
+export const JOB_PAGE_DATA_HAS_ERROR = 'JOB_PAGE_DATA_HAS_ERROR';
 
 
 export interface JobPageStateInterface{
@@ -28,12 +29,13 @@ const getAndSetJobPageData = (jobUUID: string) => {
 
         API.getJobWithSkills(jobUUID)
             .then(jobWithSkills => {
+                console.log(jobWithSkills);
                 API.getRelatedJobsToJob(jobUUID).then((relatedJobs) => {
                     dispatch(setJobPageData(jobWithSkills, relatedJobs));
                 })
-            })
-            .catch((error) => {
-                console.log(error)
+            }).catch((error: any) => {
+                console.log('HEEEY',error)
+                dispatch({type: JOB_PAGE_DATA_HAS_ERROR, payload: error.message})
             })
     }   
 }

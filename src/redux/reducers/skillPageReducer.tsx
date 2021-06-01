@@ -1,10 +1,10 @@
 import { JobInterface, SkillInterface } from "../../util/api-functions";
-import { GET_SKILL_PAGE_DATA, SET_SKILL_PAGE_DATA } from "../actions/getSkillPageData";
+import { GET_SKILL_PAGE_DATA, SET_SKILL_PAGE_DATA, SKILL_PAGE_DATA_HAS_ERROR } from "../actions/getSkillPageData";
 
 // COMMON
 interface InitialStateInterface{
     loading: boolean;
-    error: object;
+    error: string;
 }
 
 interface SkillPageDataInterface{
@@ -19,7 +19,7 @@ export interface SkillPageStateInterface extends InitialStateInterface{
 
 const initialState = {
     loading: true,
-    error: {},
+    error: "",
     data: [],
 }
 
@@ -29,14 +29,20 @@ export const skillPageDataReducer = (skillPageState = initialState, action: any)
         case GET_SKILL_PAGE_DATA:
             return {
                 loading: true,
-                error: {},
+                error: "",
                 data: [],
             }
         case SET_SKILL_PAGE_DATA: 
             return {
                 loading: false,
-                error: {},
+                error: "",
                 data: {...action.payload},
+            }
+        case SKILL_PAGE_DATA_HAS_ERROR:
+            return {
+                loading: false,
+                error: action.payload,
+                data: [],
             }
         default:
             return skillPageState

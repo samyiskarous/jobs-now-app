@@ -8,6 +8,7 @@ import getAndSetJobPageData from '../../../redux/actions/getJobPageData';
 import { RelatedJobInterface, SkillInterface } from '../../../util/api-functions';
 import { JobPageStateInterface } from '../../../redux/reducers/jobPageDataReducer';
 import Loader from '../../reusable/Loader';
+import AlertMessage from '../../reusable/AlertMessage';
 
 
 interface JobPagePropsInterface{
@@ -28,6 +29,9 @@ const JobPage = (props: JobPagePropsInterface) => {
     if(jobPageState.loading){
         return <Loader />
     }
+
+    if(jobPageState.error !== "")
+        return <AlertMessage message={jobPageState.error}/>
     
     return (
         <>  
