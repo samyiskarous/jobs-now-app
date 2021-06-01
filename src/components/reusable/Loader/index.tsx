@@ -1,13 +1,8 @@
 import React from 'react';
 import GridLoader from 'react-spinners/GridLoader';
 import './styles.css'
- 
-interface LoaderPropsInterface{
-    size?: number;
-}
 
-const Loader = (props: LoaderPropsInterface) => {
-    const {size} = props;
+const Loader = () => {
 
     return (
         <div className="loaderContainer">
