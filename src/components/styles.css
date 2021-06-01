@@ -10,9 +10,13 @@
     --large-font: 24px;
     --xlarge-font: 48px;
 
-    --medium-font-mobile: 10px;
-    --large-font-mobile: 12px;
-    --xlarge-font-mobile: 22px;
+    --medium-font-tablet: 16px;
+    --large-font-tablet: 20px;
+    --xlarge-font-tablet: 37px;
+
+    --medium-font-mobile: 12px;
+    --large-font-mobile: 15px;
+    --xlarge-font-mobile: 28px;
 
     --app-horizontal-spacings: 3rem;
 }
@@ -63,7 +67,19 @@ body{
     font-size: var(--large-font);
 }
 
-@media all and (max-width: 900px){
+@media all and (max-width: 1200px){
+    body{
+        --medium-font: var(--medium-font-tablet);
+        --large-font: var(--large-font-tablet);
+        --xlarge-font: var(--xlarge-font-tablet);
+    }
+}
+@media all and (max-width: 500px){
+    body{
+        --medium-font: var(--medium-font-mobile);
+        --large-font: var(--large-font-mobile);
+        --xlarge-font: var(--xlarge-font-mobile);
+    }
     .alignTextCenterResponsive{
         text-align: center;
     }

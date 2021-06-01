@@ -44,7 +44,7 @@ const SearchJobsView = (props: SearchJobsViewPropsInterface) => {
 
     return (
         <>
-            <p className="xlarge-font bold mainPageTitleSpacings">
+            <p className="xlarge-font bold mainPageTitleSpacings alignTextCenterResponsive">
                 {`"${searchText}" jobs (${autocompletionJobs?.length})`}
             </p>
 

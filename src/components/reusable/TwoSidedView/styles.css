@@ -25,7 +25,13 @@
 }
 
 /* Mobile View */
-@media all and (max-width: 900px){
+@media all and (max-width: 850px){
+    .sidebarContainer ul{
+        padding-left: .5rem;
+    }
+}
+
+@media all and (max-width: 500px){
     .twoSidedViewContainer{
         flex-direction: column;
     }
@@ -46,5 +52,4 @@
     .sidebarContainer p{
         text-align: center;
     }
-
 }

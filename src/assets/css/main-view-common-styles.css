@@ -39,7 +39,7 @@
     margin-right: 7rem;
 }
 
-@media all and (max-width: 900px){
+@media all and (max-width: 500px){
    .cardProperties{
         flex-direction: column;
     }

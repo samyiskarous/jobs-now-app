@@ -10,7 +10,7 @@ interface JobCardInterface{
 const JobCard = (props: JobCardInterface) => {
     const {job} = props;
 
-    let isTabletOrMobile = useMediaQuery({maxWidth: '900px'})
+    let isTabletOrMobile = useMediaQuery({maxWidth: '1300px'})
     const skillsBadgesCount = isTabletOrMobile ? 3 : job?.skills?.length;
     return (
         <div className="jobCard">
