@@ -55,6 +55,7 @@
     .jobCard{
         width: fit-content;
         align-items: center;
+        width: 100%;
     }
     .requiredSkillsSection{
         display: flex;
