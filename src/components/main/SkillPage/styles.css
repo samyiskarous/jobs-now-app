@@ -12,7 +12,7 @@
 }
 
 /* Mobile View */
-@media all and (max-width: 500px){
+@media all and (max-width: 700px){
     .descriptionParagraph{
         width: 100%;
     }
