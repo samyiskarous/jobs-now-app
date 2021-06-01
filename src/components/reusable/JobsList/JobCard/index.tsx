@@ -11,7 +11,7 @@ const JobCard = (props: JobCardInterface) => {
     const {job} = props;
 
     let isTabletOrMobile = useMediaQuery({maxWidth: '900px'})
-    const skillsBadgesCount = isTabletOrMobile ? 2 : job?.skills?.length;
+    const skillsBadgesCount = isTabletOrMobile ? 3 : job?.skills?.length;
     return (
         <div className="jobCard">
             {/* Card Title */}
