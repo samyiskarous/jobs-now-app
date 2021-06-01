@@ -7,9 +7,9 @@ import {
 } from 'react-router-dom'
 import './styles.css'
 import MainContainer from './shared/MainContainer';
-import HomePage from './main/HomePage';
-import ConnectedJobPage from './main/JobPage';
-import ConnectedSkillPage from './main/SkillPage';
+import HomePage from './main-pages/HomePage';
+import ConnectedJobPage from './main-pages/JobPage';
+import ConnectedSkillPage from './main-pages/SkillPage';
 
 const App = (props: any) => {
   

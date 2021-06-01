@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import handleGetJobsWithSkillsBatch from '../../../../redux/actions/allJobsWithSkills';
 import { AllJobsWithSkillsStateInterface } from '../../../../redux/reducers/allJobsWithSkillsReducer';
 import JobsList from '../../../reusable/JobsList';
+import Loader from '../../../reusable/Loader';
 
 interface AllJobsViewPropsInterface{
     allJobsWithSkillsState: AllJobsWithSkillsStateInterface;
@@ -18,7 +19,7 @@ const AllJobsView = (props: AllJobsViewPropsInterface) => {
     }, [callHandleGetJobsWithSkillsBatch]);
 
     if(allJobsWithSkillsState.loading)
-        return null;
+        return <Loader />
 
     return (
         <>

@@ -7,6 +7,7 @@ import './styles.css'
 import getAndSetJobPageData from '../../../redux/actions/getJobPageData';
 import { RelatedJobInterface, SkillInterface } from '../../../util/api-functions';
 import { JobPageStateInterface } from '../../../redux/reducers/jobPageDataReducer';
+import Loader from '../../reusable/Loader';
 
 
 interface JobPagePropsInterface{
@@ -25,7 +26,7 @@ const JobPage = (props: JobPagePropsInterface) => {
     }, [callGetAndSetJobPageData, jobUUID])
     
     if(jobPageState.loading){
-        return null;    
+        return <Loader />
     }
     
     return (

@@ -7,6 +7,7 @@ import './styles.css'
 import getAndSetSkillPageData from '../../../redux/actions/getSkillPageData';
 import { SkillPageStateInterface } from '../../../redux/reducers/skillPageReducer';
 import { JobInterface, SkillInterface } from '../../../util/api-functions';
+import Loader from '../../reusable/Loader';
 
 interface SkillPagePropsInterface{
     skillPageState: SkillPageStateInterface;
@@ -24,7 +25,7 @@ const SkillPage = (props: SkillPagePropsInterface) => {
     }, [callGetAndSetSkillPageData, skillUUID])
     
     if(skillPageState.loading){
-        return null;    
+        return <Loader />
     }
 
     return (

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { AutocompletionJobsStateInterface } from '../../../../redux/reducers/autocompletionJobsReducer';
 import { AutocompletionJobsWithSkillsStateInterface } from '../../../../redux/reducers/autocompletionJobsWithSkillsReducer';
 import JobsList from '../../../reusable/JobsList';
+import Loader from '../../../reusable/Loader';
 import TwoSidedView from '../../../reusable/TwoSidedView';
 import './styles.css'
 
@@ -40,7 +41,7 @@ const SearchJobsView = (props: SearchJobsViewPropsInterface) => {
     
     if(autocompletionJobsWithSkillsState.loading
         || autocompletionJobsState.loading)
-        return null;
+        return <Loader />
     
     return (
         <>
