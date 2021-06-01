@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { connect } from 'react-redux';
 import handleGetJobsWithSkills from '../../../redux/actions/allJobsWithSkills';
+import { JobInterface } from '../../../util/api-functions';
 import JobCard from './JobCard';
 import './styles.css'
 
 interface JobsListPropsInterface{
-    jobs: any
+    jobs: JobInterface[];
     dispatch?: any
     loadOnScrollEnabled?: boolean
 }

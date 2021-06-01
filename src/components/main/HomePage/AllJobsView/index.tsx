@@ -1,28 +1,37 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 import handleGetJobsWithSkillsBatch from '../../../../redux/actions/allJobsWithSkills';
+import { AllJobsWithSkillsStateInterface } from '../../../../redux/reducers/allJobsWithSkillsReducer';
 import JobsList from '../../../reusable/JobsList';
 
-const AllJobsView = (props: any) => {
+interface AllJobsViewPropsInterface{
+    allJobsWithSkillsState: AllJobsWithSkillsStateInterface;
+    callHandleGetJobsWithSkillsBatch: () => void
+}
 
-    const {callHandleGetJobsWithSkillsBatch, allJobsWithSkills} = props;
+const AllJobsView = (props: AllJobsViewPropsInterface) => {
+
+    const {callHandleGetJobsWithSkillsBatch, allJobsWithSkillsState} = props;
 
     useEffect(() => {
         callHandleGetJobsWithSkillsBatch();
     }, [callHandleGetJobsWithSkillsBatch]);
 
+    if(allJobsWithSkillsState.loading)
+        return null;
+
     return (
         <>
             <p className="xlarge-font bold mainPageTitleSpacings alignTextCenterResponsive">All Jobs</p>
 
-            <JobsList jobs={allJobsWithSkills}/>            
+            <JobsList jobs={allJobsWithSkillsState.data}/>            
         </>
     );
 }
 
 const mapStateToProps = (state: any) => {
     return {
-        allJobsWithSkills: state.allJobsWithSkills
+        allJobsWithSkillsState: state.allJobsWithSkillsState
     }
 }
 

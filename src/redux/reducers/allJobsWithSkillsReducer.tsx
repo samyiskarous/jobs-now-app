@@ -1,12 +1,33 @@
-import { GET_JOBS_WITH_SKILLS_BATCH } from "../actions/allJobsWithSkills";
+import { JobInterface } from "../../util/api-functions";
+import { SET_JOBS_WITH_SKILLS_BATCH } from "../actions/allJobsWithSkills";
 
-export const allJobsWithSkillsReducer = (allJobsWithSkillsState: any = [], action: any) => {
+// COMMON
+interface InitialStateInterface{
+    loading: boolean;
+    error: object;
+}
+
+export interface AllJobsWithSkillsStateInterface extends InitialStateInterface{
+    data: JobInterface[];
+}
+
+const initialState = {
+    loading: true,
+    error: {},
+    data: [],
+}
+
+export const allJobsWithSkillsReducer = (allJobsWithSkillsState: any = initialState, action: any) => {
     switch(action.type){
-        case GET_JOBS_WITH_SKILLS_BATCH: 
-            return [
-                ...allJobsWithSkillsState,
-                ...action.payload.jobsWithSkillsBatch
-            ]
+        case SET_JOBS_WITH_SKILLS_BATCH:
+            return {
+                loading: false,
+                error: {},
+                data: [
+                    ...allJobsWithSkillsState.data,
+                    ...action.payload.jobsWithSkillsBatch
+                ],
+            }
         default:
             return allJobsWithSkillsState
     }

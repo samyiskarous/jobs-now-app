@@ -1,10 +1,10 @@
 import API from "../../util/api-functions";
 
-export const GET_JOBS_WITH_SKILLS_BATCH = 'GET_JOBS_WITH_SKILLS_BATCH';
+export const SET_JOBS_WITH_SKILLS_BATCH = 'SET_JOBS_WITH_SKILLS_BATCH';
 
 const getJobsWithSkillsBatch = (jobsWithSkillsBatch: any) => {
     return {
-        type: GET_JOBS_WITH_SKILLS_BATCH,
+        type: SET_JOBS_WITH_SKILLS_BATCH,
         payload: {
             jobsWithSkillsBatch
         }

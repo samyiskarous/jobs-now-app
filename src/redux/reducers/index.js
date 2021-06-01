@@ -6,7 +6,7 @@ import { jobPageDataReducer } from "./jobPageDataReducer";
 import { skillPageDataReducer } from "./skillPageReducer";
 
 const rootReducer = combineReducers({
-    allJobsWithSkills: allJobsWithSkillsReducer,
+    allJobsWithSkillsState: allJobsWithSkillsReducer,
     autocompletionJobs: autocompletionJobsReducer,
     autocompletionJobsWithSkills: autocompletionJobsWithSkillsReducer,
     jobPageState: jobPageDataReducer,

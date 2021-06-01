@@ -155,6 +155,7 @@ export interface JobInterface{
     job_title: string;
     uuid: string;
     job_uuid: string;
+    suggestion: string;
 }
 
 export interface SuggestedJobInterface{

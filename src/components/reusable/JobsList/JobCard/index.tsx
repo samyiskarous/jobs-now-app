@@ -2,9 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import './styles.css'
 import {useMediaQuery} from 'react-responsive'
+import { JobInterface } from '../../../../util/api-functions';
 
 interface JobCardInterface{
-    job?: any,
+    job: JobInterface,
 }
 
 const JobCard = (props: JobCardInterface) => {
