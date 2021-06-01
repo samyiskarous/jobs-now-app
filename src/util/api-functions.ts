@@ -26,7 +26,10 @@ const API: APIInterface = {
                 .then(response => response.json())
                 .then(skill => {
                     if(skill.error !== undefined)
-                        throw new Error(skill.error.message);
+                        throw new Error(skill.error.message)
+                    else{
+                        return skill;
+                    }
                 })
                 .catch((error) => {
                     throw new Error(error);
@@ -82,15 +85,16 @@ const API: APIInterface = {
         return fetch(`${endpoint}jobs/${jobUUID}`)
                 .then(response => response.json())
                 .then(async job => {
-                    if(job.error !== undefined)
+                    if(job.error !== undefined){
                         throw new Error(job.error.message);
-
+                    }else{
                         await API.getJobSkills(jobUUID).then(jobSkills => {
                             jobWithSkills = {
                                 ...job,
                                 skills: jobSkills
                             }
                         })
+                    }
                     
 
                     return jobWithSkills
