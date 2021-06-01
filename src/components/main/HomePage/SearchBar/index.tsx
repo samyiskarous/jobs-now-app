@@ -8,12 +8,13 @@ import './styles.css'
 import { Link } from 'react-router-dom';
 import SearchIcon from '../../../../assets/SVGs/SearchIcon.svg'
 import updatePersistedSearchQueries from '../../../../helper-functions.tsx/updatePersistedSearchQueries';
+import { JobInterface } from '../../../../util/api-functions';
 
 interface SearchInputPropsInterface{
     callHandleGetJobsByAutoCompletion: (searchText: string) => void;
     updateSearchTextHandlerCallback: (searchText: string) => void,
     updatePersistedSearchQueriesStateCallback: (newPersistedSearchQueries: string[]) => void;
-    autocompletionJobs?: any;
+    autocompletionJobs: JobInterface[];
 }
 
 const SearchInput = (props: SearchInputPropsInterface) => {
@@ -78,8 +79,8 @@ const SearchInput = (props: SearchInputPropsInterface) => {
                     {/* Controls Hiding/Showing of the autocompletion list */}
                     {isComponentVisible && 
                         <div className="autocompletionList">
-                            {autocompletionJobs.map((job: any, index: any) => {
-                                return <Link key={index} to="#" title="Click to view the Job">{job.suggestion}</Link>
+                            {autocompletionJobs.map((job, index) => {
+                                return <Link key={index} to={`/jobs/${job.uuid}`} title="Click to view the Job">{job.suggestion}</Link>
                             })}
                         </div>
                     }
