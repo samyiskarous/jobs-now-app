@@ -1,10 +1,37 @@
-import { SET_AUTOCOMPLETION_JOBS } from "../actions/getJobsByAutocompletion";
+import { JobInterface } from "../../util/api-functions";
+import { SET_AUTOCOMPLETION_JOBS, GET_AUTOCOMPLETION_JOBS } from "../actions/getJobsByAutocompletion";
 
-export const autocompletionJobsReducer = (autocompletionJobsState: any = [], action: any) => {
+// COMMON
+interface InitialStateInterface{
+    loading: boolean;
+    error: object;
+}
+
+export interface AutocompletionJobsStateInterface extends InitialStateInterface{
+    data: JobInterface[];
+}
+
+const initialState = {
+    loading: true,
+    error: {},
+    data: [],
+}
+
+export const autocompletionJobsReducer = (autocompletionJobsState: any = initialState, action: any) => {
     switch(action.type){
-        case SET_AUTOCOMPLETION_JOBS: 
-            return [...action.payload.autocompletionJobs]
+        case GET_AUTOCOMPLETION_JOBS:
+            return {
+                loading: true,
+                error: {},
+                data: []
+            }
+        case SET_AUTOCOMPLETION_JOBS:
+            return {
+                loading: false,
+                error: {},
+                data: [...action.payload.autocompletionJobs]
+            }
         default:
-            return [...autocompletionJobsState]
+            return autocompletionJobsState
     }
 }

@@ -1,29 +1,29 @@
-import React, { ReactNode, useEffect } from 'react'
+import React, { ReactNode } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import handleGetJobsWithSkillsBatch from '../../../../redux/actions/allJobsWithSkills';
+import { AutocompletionJobsStateInterface } from '../../../../redux/reducers/autocompletionJobsReducer';
+import { AutocompletionJobsWithSkillsStateInterface } from '../../../../redux/reducers/autocompletionJobsWithSkillsReducer';
 import JobsList from '../../../reusable/JobsList';
 import TwoSidedView from '../../../reusable/TwoSidedView';
 import './styles.css'
 
 interface SearchJobsViewPropsInterface{
     searchText: string;
-    dispatch?: any;
-    autocompletionJobsWithSkills?: any;
-    autocompletionJobs?: any;
+    autocompletionJobsWithSkillsState: AutocompletionJobsWithSkillsStateInterface;
+    autocompletionJobsState: AutocompletionJobsStateInterface;
     persistedSearchQueries: string[];
 }
 
 const SearchJobsView = (props: SearchJobsViewPropsInterface) => {
 
     const {
-        dispatch, 
-        autocompletionJobsWithSkills, 
+        autocompletionJobsWithSkillsState, 
         searchText, 
-        autocompletionJobs,
+        autocompletionJobsState,
         persistedSearchQueries
     } = props;
 
+    
     const sidebarList: ReactNode = (
         <ul>
             {persistedSearchQueries.map((searchQueryValue, index) => {
@@ -37,25 +37,20 @@ const SearchJobsView = (props: SearchJobsViewPropsInterface) => {
             })}
         </ul>
     );
-
-    useEffect(() => {
-        dispatch(handleGetJobsWithSkillsBatch());
-    }, [dispatch]);
-
+    
+    if(autocompletionJobsWithSkillsState.loading
+        || autocompletionJobsState.loading)
+        return null;
+    
     return (
         <>
             <p className="xlarge-font bold mainPageTitleSpacings alignTextCenterResponsive">
-                {`"${searchText}" jobs (${autocompletionJobs?.length})`}
+                {`"${searchText}" jobs (${autocompletionJobsState.data.length})`}
             </p>
 
             <TwoSidedView 
                 mainViewChildren={
-                    // Render the Job Cards when its data is ready
-                    autocompletionJobsWithSkills.length ?
-                        (
-                            <JobsList jobs={autocompletionJobsWithSkills} loadOnScrollEnabled={false}/> 
-                        )
-                    : null 
+                    <JobsList jobs={autocompletionJobsWithSkillsState.data} loadOnScrollEnabled={false}/>
                 }
                 sidebarData={{
                     title:"Search History:",
@@ -68,8 +63,8 @@ const SearchJobsView = (props: SearchJobsViewPropsInterface) => {
 
 const mapStateToProps = (state: any) => {
     return {
-        autocompletionJobsWithSkills: state.autocompletionJobsWithSkills,
-        autocompletionJobs: state.autocompletionJobs
+        autocompletionJobsWithSkillsState: state.autocompletionJobsWithSkillsState,
+        autocompletionJobsState: state.autocompletionJobsState
     }
 }
   

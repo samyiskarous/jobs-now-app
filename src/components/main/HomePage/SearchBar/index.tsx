@@ -8,13 +8,13 @@ import './styles.css'
 import { Link } from 'react-router-dom';
 import SearchIcon from '../../../../assets/SVGs/SearchIcon.svg'
 import updatePersistedSearchQueries from '../../../../helper-functions.tsx/updatePersistedSearchQueries';
-import { JobInterface } from '../../../../util/api-functions';
+import { AutocompletionJobsStateInterface } from '../../../../redux/reducers/autocompletionJobsReducer';
 
 interface SearchInputPropsInterface{
     callHandleGetJobsByAutoCompletion: (searchText: string) => void;
     updateSearchTextHandlerCallback: (searchText: string) => void,
     updatePersistedSearchQueriesStateCallback: (newPersistedSearchQueries: string[]) => void;
-    autocompletionJobs: JobInterface[];
+    autocompletionJobsState: AutocompletionJobsStateInterface;
 }
 
 const SearchInput = (props: SearchInputPropsInterface) => {
@@ -22,7 +22,7 @@ const SearchInput = (props: SearchInputPropsInterface) => {
         callHandleGetJobsByAutoCompletion, 
         updateSearchTextHandlerCallback, 
         updatePersistedSearchQueriesStateCallback,
-        autocompletionJobs
+        autocompletionJobsState
     } = props;
     const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
 
@@ -32,12 +32,16 @@ const SearchInput = (props: SearchInputPropsInterface) => {
     const searchInputRef = useRef<HTMLInputElement>(null);
 
     const initiateSearching = (searchText: string) => {
-        updateSearchTextHandlerCallback(searchText);
-
-        const newPersistedSearchQueries = updatePersistedSearchQueries(searchText);
-        updatePersistedSearchQueriesStateCallback(newPersistedSearchQueries);
-
+        
         callHandleGetJobsByAutoCompletion(searchText);
+        
+        // To not update them immediately on the screen, as there will be a loading screen
+        setTimeout(() => {
+            updateSearchTextHandlerCallback(searchText);
+
+            const newPersistedSearchQueries = updatePersistedSearchQueries(searchText);
+            updatePersistedSearchQueriesStateCallback(newPersistedSearchQueries);
+        }, 1);
     }
     
     const debouncedSearchJobsHandler = useDebounce((searchText: string) => {
@@ -74,12 +78,12 @@ const SearchInput = (props: SearchInputPropsInterface) => {
                 onClick={() => setIsComponentVisible(true)}
             />
 
-            {autocompletionJobs.length > 0 ? (
+            {!autocompletionJobsState.loading && autocompletionJobsState?.data?.length > 0 ? (
                 <div ref={ref} className="autoCompletionListContainer">
                     {/* Controls Hiding/Showing of the autocompletion list */}
                     {isComponentVisible && 
                         <div className="autocompletionList">
-                            {autocompletionJobs.map((job, index) => {
+                            {autocompletionJobsState.data.map((job, index) => {
                                 return <Link key={index} to={`/jobs/${job.uuid}`} title="Click to view the Job">{job.suggestion}</Link>
                             })}
                         </div>
@@ -93,7 +97,7 @@ const SearchInput = (props: SearchInputPropsInterface) => {
 
 const mapStateToProps = (state: any) => {
     return {
-        autocompletionJobs: state.autocompletionJobs
+        autocompletionJobsState: state.autocompletionJobsState
     };
 }
 

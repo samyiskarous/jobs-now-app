@@ -4,7 +4,7 @@ export const GET_JOB_PAGE_DATA = 'GET_JOB_PAGE_DATA';
 export const SET_JOB_PAGE_DATA = 'SET_JOB_PAGE_DATA';
 
 
-export interface JobPageDataInterface{
+export interface JobPageStateInterface{
     jobWithSkills: JobInterface;
     relatedJobs: RelatedJobInterface[];
 }

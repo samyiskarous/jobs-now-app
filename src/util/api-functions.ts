@@ -58,8 +58,8 @@ const API: APIInterface = {
                     console.log('error', error)
                 });
     },
-    getAndAttachSkillsToAutocompletionJobs: async (jobsMissingSkills: SuggestedJobInterface[]) => {
-            let jobsWithSkills: SuggestedJobInterface[] = [];
+    getAndAttachSkillsToAutocompletionJobs: async (jobsMissingSkills: JobInterface[]) => {
+            let jobsWithSkills: JobInterface[] = [];
 
             for(let index = 0; index < jobsMissingSkills.length; index ++){
                 await API.getJobSkills(jobsMissingSkills[index].uuid)
@@ -96,7 +96,7 @@ const API: APIInterface = {
     getRelatedJobsToJob: (jobUUID) => {
         return fetch(`${endpoint}jobs/${jobUUID}/related_jobs`)
                 .then(response => response.json())
-                .then((data: RelatedJobsResponseInterface) => data.related_job_titles.slice(0, 15))
+                .then((data: RelatedJobsToJobResponseInterface) => data.related_job_titles.slice(0, 15))
                 .catch((error) => {
                     console.log('error', error)
                 });
@@ -127,8 +127,8 @@ interface APIInterface{
     getSkill: (skillUUID: string) => Promise<SkillInterface>;
     getJobsWithSkills: (nextPage?: number, jobsLimit?: number) => Promise<JobInterface[]>;
 
-    getJobsByAutocompletion: (searchText: string) => Promise<SuggestedJobInterface>
-    getAndAttachSkillsToAutocompletionJobs: (jobsMissingSkills: SuggestedJobInterface[]) => Promise<SuggestedJobInterface[]>;
+    getJobsByAutocompletion: (searchText: string) => Promise<JobInterface>
+    getAndAttachSkillsToAutocompletionJobs: (jobsMissingSkills: JobInterface[]) => Promise<JobInterface[]>;
     
     getJobWithSkills: (jobUUID: string) => Promise<JobInterface | void>;
     getRelatedJobsToJob: (jobUUID: string) => Promise<RelatedJobInterface[] | void>;
@@ -158,15 +158,7 @@ export interface JobInterface{
     suggestion: string;
 }
 
-export interface SuggestedJobInterface{
-    normalized_job_title: string;
-    parent_uuid: string;
-    skills?: SkillInterface[];
-    suggestion: string;
-    uuid: string;
-}
-
-interface RelatedJobsResponseInterface{
+interface RelatedJobsToJobResponseInterface{
     uuid: string,
     related_job_titles: RelatedJobInterface[]
 }
