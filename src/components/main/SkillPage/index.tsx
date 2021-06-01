@@ -29,7 +29,7 @@ const SkillPage = (props: SkillPagePropsInterface) => {
 
     return (
         <>
-            <p className="xlarge-font bold mainPageTitleSpacings">{skill.skill_name}</p>
+            <p className="xlarge-font bold mainPageTitleSpacings alignTextCenterResponsive">{skill.skill_name}</p>
             
             <TwoSidedView
                 mainViewChildren={

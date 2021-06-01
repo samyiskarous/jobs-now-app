@@ -38,3 +38,17 @@
 .cardProperty:not(:last-child){
     margin-right: 7rem;
 }
+
+@media all and (max-width: 900px){
+   .cardProperties{
+        flex-direction: column;
+    }
+
+    .cardProperty:not(:last-child){
+        margin-right: 0;
+    }
+
+    .mainViewCard{
+        text-align: center;
+    }
+}

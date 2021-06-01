@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import './styles.css'
+import {useMediaQuery} from 'react-responsive'
 
 interface JobCardInterface{
     job?: any,
@@ -9,6 +10,8 @@ interface JobCardInterface{
 const JobCard = (props: JobCardInterface) => {
     const {job} = props;
 
+    let isTabletOrMobile = useMediaQuery({maxWidth: '900px'})
+    const skillsBadgesCount = isTabletOrMobile ? 2 : job?.skills?.length;
     return (
         <div className="jobCard">
             {/* Card Title */}
@@ -21,7 +24,7 @@ const JobCard = (props: JobCardInterface) => {
                 <div className="skillsBadgesContainer">
                     {job?.skills === undefined ? 'None' : (
 
-                        job?.skills?.map((skill: any, index: number) => {
+                        job?.skills?.slice(0, skillsBadgesCount).map((skill: any, index: number) => {
                             return (
                                 <span key={index} className="skillBadge">
                                     <Link to={`skills/${skill.skill_uuid}`} className="skillBadgeLink">

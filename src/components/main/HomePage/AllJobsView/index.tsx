@@ -13,7 +13,7 @@ const AllJobsView = (props: any) => {
 
     return (
         <>
-            <p className="xlarge-font bold mainPageTitleSpacings">All Jobs</p>
+            <p className="xlarge-font bold mainPageTitleSpacings alignTextCenterResponsive">All Jobs</p>
 
             <JobsList jobs={allJobsWithSkills}/>            
         </>

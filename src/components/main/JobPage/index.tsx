@@ -30,7 +30,7 @@ const JobPage = (props: JobPagePropsInterface) => {
     
     return (
         <>  
-            <p className="xlarge-font bold mainPageTitleSpacings">{jobWithSkills.title}</p>
+            <p className="xlarge-font bold mainPageTitleSpacings alignTextCenterResponsive">{jobWithSkills.title}</p>
     
             <TwoSidedView
                 mainViewChildren={

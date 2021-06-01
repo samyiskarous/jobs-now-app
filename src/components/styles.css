@@ -10,6 +10,10 @@
     --large-font: 24px;
     --xlarge-font: 48px;
 
+    --medium-font-mobile: 10px;
+    --large-font-mobile: 12px;
+    --xlarge-font-mobile: 22px;
+
     --app-horizontal-spacings: 3rem;
 }
 
@@ -57,4 +61,10 @@ body{
 /* Firefox 18- */
 :-moz-placeholder { 
     font-size: var(--large-font);
+}
+
+@media all and (max-width: 900px){
+    .alignTextCenterResponsive{
+        text-align: center;
+    }
 }

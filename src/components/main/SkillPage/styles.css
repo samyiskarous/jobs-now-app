@@ -10,3 +10,10 @@
 .relatedJobsTitle{
     margin-bottom: 2.8rem;
 }
+
+/* Mobile View */
+@media all and (max-width: 900px){
+    .descriptionParagraph{
+        width: 100%;
+    }
+}

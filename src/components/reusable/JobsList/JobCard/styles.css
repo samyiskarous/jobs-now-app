@@ -48,3 +48,9 @@
     text-decoration: none;
     color: inherit;
 }
+
+@media all and (max-width: 900px) {
+    .jobCard{
+        width: 100%
+    }
+}

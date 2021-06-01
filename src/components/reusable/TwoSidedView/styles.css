@@ -23,3 +23,28 @@
 .sidebarContainer ul li{
     margin-top: 0.8rem;
 }
+
+/* Mobile View */
+@media all and (max-width: 900px){
+    .twoSidedViewContainer{
+        flex-direction: column;
+    }
+
+    .mainViewContainer{
+        width: 100%
+    }
+
+    .mainViewContainer p{
+        text-align: center;
+    }
+
+    .sidebarContainer{
+        margin-top: 2rem;
+        width: 100%;
+    }
+
+    .sidebarContainer p{
+        text-align: center;
+    }
+
+}

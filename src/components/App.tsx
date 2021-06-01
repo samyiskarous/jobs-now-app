@@ -12,6 +12,7 @@ import ConnectedJobPage from './main/JobPage';
 import ConnectedSkillPage from './main/SkillPage';
 
 const App = (props: any) => {
+  
 
   return (
     <div className="App">
