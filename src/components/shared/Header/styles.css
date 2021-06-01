@@ -39,3 +39,16 @@
 .navigation-links li a:not(.selected):hover{
   color: gray;
 }
+
+/* Responsive navigation links */
+@media all and (max-width: 700px){
+  .header{
+    flex-direction: column;
+  }
+  .navigation-links {
+    padding-left: 0;
+  }
+  .navigation-links li {
+    padding-left: 0;
+  }
+}

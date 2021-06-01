@@ -9,3 +9,9 @@
     display: flex;
     flex-direction: column;
 }
+
+@media all and (max-width){
+    .mainContainerContent .alignTextCenterResponsive{
+        text-align: center;
+    }
+}

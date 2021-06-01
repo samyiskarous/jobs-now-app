@@ -5,9 +5,15 @@
 }
 
 .infinite-scroll-component{
+    display: flex;
+    width: 100%;
     height: auto;
     flex-wrap: wrap;
-    display: flex;
     justify-content: space-between;
+    align-items: center;
     overflow: auto;
+}
+
+.infinite-scroll-component__outerdiv{
+    display: contents;
 }

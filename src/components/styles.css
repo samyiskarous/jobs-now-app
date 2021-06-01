@@ -80,7 +80,8 @@ body{
         --large-font: var(--large-font-mobile);
         --xlarge-font: var(--xlarge-font-mobile);
     }
-    .alignTextCenterResponsive{
+
+    p.alignTextCenterResponsive{
         text-align: center;
     }
 }

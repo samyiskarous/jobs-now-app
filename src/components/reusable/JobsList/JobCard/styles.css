@@ -53,7 +53,7 @@
 
 @media all and (max-width: 900px){
     .jobCard{
-        width: 100%;
+        width: fit-content;
         align-items: center;
     }
     .requiredSkillsSection{
